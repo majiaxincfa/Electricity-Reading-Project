@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 11 19:20:45 2025
-
-@author: 73671
-"""
-
 from flask import Flask, render_template_string, request, redirect, url_for
 
 app = Flask(__name__)
@@ -75,23 +68,23 @@ def login():
 @app.route('/dashboard')
 def dashboard():
     return render_template_string("""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Dashboard</title>
-    </head>
-    <body>
-        <h1>Admin Dashboard</h1>
-        <ul>
-            <li><a href="/add_user">Add User</a></li>
-            <li><a href="/get_user">View User</a></li>
-            <li><a href="/modify_user">Modify User</a></li>
-            <li><a href="/delete_user">Delete User</a></li>
-        </ul>
-    </body>
-    </html>
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, Admin!</p>
+    <ul>
+        <li><a href="/add_user">Add User</a></li>
+        <li><a href="/get_user">View User</a></li>
+        <li><a href="/modify_user">Modify User</a></li>
+        <li><a href="/delete_user">Delete User</a></li>
+        <li><a href="/meterreading">Meter Readings System</a></li>
+    </ul>
+    """)
+
+@app.route('/meterreading')
+def meter_reading():
+    return render_template_string("""
+    <h2>Meter Readings System</h2>
+    <p>Welcome to the Meter Readings System.</p>
+    <!-- You can add more content or functionality here -->
     """)
 
 @app.route('/add_user', methods=['GET', 'POST'])
@@ -100,42 +93,42 @@ def add_user():
         return render_template_string("""
         <h2>Add New User</h2>
         <form action="/add_user" method="post">
-            <label for="username">Username:</label>
+            <label for="username">Username (e.g. John Doe):</label>
             <input type="text" name="username" required><br><br>
 
-            <label for="meter_no">Meter Number:</label>
+            <label for="meter_no">Meter Number (e.g. 123-456-789):</label>
             <input type="text" name="meter_no" required><br><br>
 
-            <label for="dwelling_type">Dwelling Type:</label>
+            <label for="dwelling_type">Dwelling Type (e.g. Apartment):</label>
             <select name="dwelling_type" required>
                 {% for dwelling in dwelling_types %}
                     <option value="{{ dwelling }}">{{ dwelling }}</option>
                 {% endfor %}
             </select><br><br>
 
-            <label for="region">Region:</label>
+            <label for="region">Region (e.g. Central):</label>
             <select name="region" required>
                 {% for region in regions %}
                     <option value="{{ region }}">{{ region }}</option>
                 {% endfor %}
             </select><br><br>
 
-            <label for="area">Area:</label>
+            <label for="area">Area (e.g. Downtown):</label>
             <input type="text" name="area" required><br><br>
 
-            <label for="community">Community:</label>
+            <label for="community">Community (e.g. Greenfield):</label>
             <input type="text" name="community" required><br><br>
 
-            <label for="unit">Unit:</label>
+            <label for="unit">Unit (e.g. A1):</label>
             <input type="text" name="unit" required><br><br>
 
-            <label for="floor">Floor:</label>
+            <label for="floor">Floor (e.g. 5):</label>
             <input type="text" name="floor" required><br><br>
 
-            <label for="email">Email:</label>
+            <label for="email">Email (e.g. john@example.com):</label>
             <input type="email" name="email" required><br><br>
 
-            <label for="tel">Phone:</label>
+            <label for="tel">Phone (e.g. 123-456-7890):</label>
             <input type="tel" name="tel" required><br><br>
 
             <button type="submit">Submit</button>
@@ -164,7 +157,7 @@ def get_user():
         return render_template_string("""
         <h2>View User</h2>
         <form action="/get_user" method="post">
-            <label for="meter_no">Meter Number:</label>
+            <label for="meter_no">Meter Number (e.g. 123-456-789):</label>
             <input type="text" name="meter_no" required><br><br>
             <button type="submit">Search</button>
         </form>
@@ -196,7 +189,7 @@ def modify_user():
         return render_template_string("""
         <h2>Modify User</h2>
         <form action="/modify_user" method="post">
-            <label for="meter_no">Meter Number:</label>
+            <label for="meter_no">Meter Number (e.g. 123-456-789):</label>
             <input type="text" name="meter_no" required><br><br>
             <button type="submit">Search</button>
         </form>
@@ -212,63 +205,47 @@ def modify_user():
                 <label for="username">Username:</label>
                 <input type="text" name="username" value="{{ user['username'] }}" required><br><br>
 
-                <label for="dwelling_type">Dwelling Type:</label>
-                <select name="dwelling_type" required>
-                    {% for dwelling in dwelling_types %}
-                        <option value="{{ dwelling }}" {% if dwelling == user['dwelling_type'] %}selected{% endif %}>{{ dwelling }}</option>
-                    {% endfor %}
-                </select><br><br>
-
-                <label for="region">Region:</label>
-                <select name="region" required>
-                    {% for region in regions %}
-                        <option value="{{ region }}" {% if region == user['region'] %}selected{% endif %}>{{ region }}</option>
-                    {% endfor %}
-                </select><br><br>
-
-                <label for="area">Area:</label>
-                <input type="text" name="area" value="{{ user['area'] }}" required><br><br>
-
-                <label for="community">Community:</label>
-                <input type="text" name="community" value="{{ user['community'] }}" required><br><br>
-
-                <label for="unit">Unit:</label>
-                <input type="text" name="unit" value="{{ user['unit'] }}" required><br><br>
-
-                <label for="floor">Floor:</label>
-                <input type="text" name="floor" value="{{ user['floor'] }}" required><br><br>
-
                 <label for="email">Email:</label>
                 <input type="email" name="email" value="{{ user['email'] }}" required><br><br>
 
                 <label for="tel">Phone:</label>
                 <input type="tel" name="tel" value="{{ user['tel'] }}" required><br><br>
 
-                <button type="submit">Modify</button>
+                <button type="submit">Submit Changes</button>
             </form>
-            """, user=user, meter_no=meter_no, dwelling_types=dwelling_types, regions=regions)
+            """, user=user)
+
         else:
             return "User not found."
 
 @app.route('/modify_user/<meter_no>', methods=['POST'])
-def submit_modified_user(meter_no):
-    modified_data = {
-        'username': request.form['username'],
-        'dwelling_type': request.form['dwelling_type'],
-        'region': request.form['region'],
-        'area': request.form['area'],
-        'community': request.form['community'],
-        'unit': request.form['unit'],
-        'floor': request.form['floor'],
-        'email': request.form['email'],
-        'tel': request.form['tel']
-    }
+def modify_user_post(meter_no):
     user = next((u for u in users if u['meter_no'] == meter_no), None)
     if user:
-        user.update(modified_data)
-        return redirect(url_for('dashboard'))
-    else:
-        return "User not found."
+        username = request.form['username']
+        email = request.form['email']
+        tel = request.form['tel']
+
+        changes = []
+        if user['username'] != username:
+            user['username'] = username
+            changes.append("Username changed.")
+        if user['email'] != email:
+            user['email'] = email
+            changes.append("Email changed.")
+        if user['tel'] != tel:
+            user['tel'] = tel
+            changes.append("Phone number changed.")
+        
+        if not changes:
+            return "No changes made."
+        
+        return render_template_string("""
+        <h2>Modify User</h2>
+        <p>{{ changes | join(', ') }}</p>
+        """, changes=changes)
+    
+    return "User not found."
 
 @app.route('/delete_user', methods=['GET', 'POST'])
 def delete_user():
@@ -276,7 +253,7 @@ def delete_user():
         return render_template_string("""
         <h2>Delete User</h2>
         <form action="/delete_user" method="post">
-            <label for="meter_no">Meter Number:</label>
+            <label for="meter_no">Meter Number (e.g. 123-456-789):</label>
             <input type="text" name="meter_no" required><br><br>
             <button type="submit">Delete</button>
         </form>
