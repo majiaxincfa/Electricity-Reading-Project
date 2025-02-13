@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+#初始化表格
+data_columns = ["meter_id", "user_id", "time", "reading"]
+data_store = pd.DataFrame(columns=data_columns)
+
 @app.route('/meterreading', methods=['GET','POST'])
 def meter_reading():
     if request.method == 'GET':
@@ -63,6 +67,10 @@ def meter_reading():
         user_id = data["user_id"]
         time = data["time"]
         reading = data["reading"]
+        
+        # 追加数据到 DataFrame
+        new_data = pd.DataFrame([data])
+        data_store = pd.concat([data_store, new_data], ignore_index=True)
 
         # 这里可以存入数据库，目前只返回数据
         return jsonify({"status": "success", "message": f"We have received: {meter_id}, {user_id}, from{starttime} to {endtime}, {reading}"}), 201
