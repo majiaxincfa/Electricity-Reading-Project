@@ -157,3 +157,24 @@
 2025-02-13 08:10:25,444 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:25] "GET / HTTP/1.1" 200 -
 2025-02-13 08:10:34,380 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:34] "GET /register_form HTTP/1.1" 200 -
 2025-02-13 08:10:37,342 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:37] "GET / HTTP/1.1" 200 -
+2025-02-13 08:11:32,550 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 08:11:32,550 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 08:11:32,551 - INFO -  * Restarting with stat
+2025-02-13 08:11:32,718 - WARNING -  * Debugger is active!
+2025-02-13 08:11:32,719 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 08:11:35,408 - INFO - 127.0.0.1 - - [13/Feb/2025 08:11:35] "GET / HTTP/1.1" 200 -
+2025-02-13 08:11:42,123 - INFO - 127.0.0.1 - - [13/Feb/2025 08:11:42] "[33mGET /set_budget_form HTTP/1.1[0m" 404 -
+2025-02-13 08:11:44,306 - INFO - 127.0.0.1 - - [13/Feb/2025 08:11:44] "GET / HTTP/1.1" 200 -
+2025-02-13 08:14:43,927 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-13 08:14:43,962 - INFO -  * Restarting with stat
+2025-02-13 08:14:44,155 - WARNING -  * Debugger is active!
+2025-02-13 08:14:44,155 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 08:15:14,322 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-13 08:15:14,353 - INFO -  * Restarting with stat
+2025-02-13 08:15:14,513 - WARNING -  * Debugger is active!
+2025-02-13 08:15:14,514 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 08:15:25,535 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-13 08:15:25,570 - INFO -  * Restarting with stat
+2025-02-13 08:15:25,775 - WARNING -  * Debugger is active!
+2025-02-13 08:15:25,776 - INFO -  * Debugger PIN: 221-723-748

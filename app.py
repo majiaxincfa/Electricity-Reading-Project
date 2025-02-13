@@ -34,11 +34,6 @@ def meter_reading_form():
 def query_usage_form():
     return render_template('query_usage.html')
 
-# 区域平均用电量页面
-@app.route('/compare_area_avg_form')
-def compare_area_avg_form():
-    return render_template('compare_area_avg.html')
-
 
 # 账户注册
 @app.route('/register', methods=['POST'])
@@ -118,50 +113,6 @@ def query_usage():
         return jsonify({'last_month_bill_kwh': total_usage}), 200
 
     return jsonify({'usage': filtered_readings}), 200
-
-# 查询区域平均用电量
-@app.route('/compare_area_avg', methods=['POST'])
-def compare_area_avg():
-    account_id = request.form.get('account_id')
-    if not account_id or account_id not in accounts:
-        return jsonify({'message': 'Account does not exist or is not registered'}), 404
-
-    area = accounts[account_id]['area']
-    user_readings = [r['reading'] for r in accounts[account_id]['readings']]
-    avg_consumption = sum(area_consumption[area]) / len(area_consumption[area]) if area_consumption[area] else 0
-
-    return jsonify({'user_consumption': sum(user_readings), 'area_avg': avg_consumption}), 200
-
-# 设定用户电量预算
-@app.route('/set_budget', methods=['POST'])
-def set_budget():
-    account_id = request.form.get('account_id')
-    budget = float(request.form.get('budget'))
-
-    if not account_id or budget is None:
-        return jsonify({'message': 'Missing required parameters'}), 400
-
-    if account_id not in accounts:
-        return jsonify({'message': 'Account does not exist'}), 404
-
-    budget_limits[account_id] = budget
-    return jsonify({'message': 'Budget set successfully'}), 201
-
-# 预算超额警告
-@app.route('/check_budget', methods=['POST'])
-def check_budget():
-    account_id = request.form.get('account_id')
-    if not account_id or account_id not in accounts:
-        return jsonify({'message': 'Account does not exist or is not registered'}), 404
-
-    total_usage = sum([r['reading'] for r in accounts[account_id]['readings']])
-    budget = budget_limits.get(account_id, None)
-
-    if budget is None:
-        return jsonify({'message': 'Budget not set. Please set a budget first'}), 400
-
-    warning = "⚠️ Budget exceeded!" if total_usage > budget else "✅ Within budget"
-    return jsonify({'total_usage': total_usage, 'budget': budget, 'status': warning}), 200
 
 if __name__ == '__main__':
     try:
