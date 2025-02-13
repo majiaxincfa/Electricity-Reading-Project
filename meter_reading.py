@@ -22,11 +22,8 @@ def meter_reading():
                 <label>UserID：</label>
                 <input type="text" id="user_id" required>
                 <br>
-                <label>Start time：</label>
-                <input type="datetime-local" id="starttime" required>
-                <br>
-                <label>End time：</label>
-                <input type="datetime-local" id="endtime" required>
+                <label>Time：</label>
+                <input type="datetime-local" id="time" required>
                 <br>
                 <label>Meter reading (kWh)：</label>
                 <input type="number" id="reading" step="0.01" required>
@@ -43,8 +40,7 @@ def meter_reading():
                     body: JSON.stringify({
                         meter_id: document.getElementById("meter_id").value,
                         user_id: document.getElementById("user_id").value,
-                        starttime: document.getElementById("starttime").value,
-                        endtime: document.getElementById("endtime").value,
+                        time: document.getElementById("time").value,
                         reading: parseFloat(document.getElementById("reading").value)
                     })
                 })
@@ -60,13 +56,12 @@ def meter_reading():
     elif request.method == 'POST':
 
         data = request.get_json()
-        if not all(k in data for k in ("meter_id", "user_id", "starttime","endtime", "reading")):
+        if not all(k in data for k in ("meter_id", "user_id", "time", "reading")):
             return jsonify({"status": "error", "message": "Please fill out all blanks."}), 400
 
         meter_id = data["meter_id"]
         user_id = data["user_id"]
-        starttime = data["starttime"]
-        endtime = data["endtime"]
+        time = data["time"]
         reading = data["reading"]
 
         # 这里可以存入数据库，目前只返回数据
