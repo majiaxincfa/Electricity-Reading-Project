@@ -136,9 +136,18 @@ def add_user():
         """, dwelling_types=dwelling_types, regions=regions)
 
     if request.method == 'POST':
+        # Check if the meter_no already exists
+        meter_no = request.form['meter_no']
+        if any(user['meter_no'] == meter_no for user in users):
+            return render_template_string("""
+            <h2>Error: Meter Number already exists!</h2>
+            <p>The meter number you entered is already registered. Please use a different meter number.</p>
+            <a href="/add_user">Go back to the registration form</a>
+            """)
+
         user_data = {
             "username": request.form['username'],
-            "meter_no": request.form['meter_no'],
+            "meter_no": meter_no,
             "dwelling_type": request.form['dwelling_type'],
             "region": request.form['region'],
             "area": request.form['area'],
@@ -150,6 +159,7 @@ def add_user():
         }
         users.append(user_data)
         return redirect(url_for('dashboard'))
+
 
 @app.route('/get_user', methods=['GET', 'POST'])
 def get_user():
@@ -213,7 +223,7 @@ def modify_user():
 
                 <button type="submit">Submit Changes</button>
             </form>
-            """, user=user)
+            """, user=user, meter_no=meter_no)
 
         else:
             return "User not found."
@@ -222,30 +232,36 @@ def modify_user():
 def modify_user_post(meter_no):
     user = next((u for u in users if u['meter_no'] == meter_no), None)
     if user:
-        username = request.form['username']
-        email = request.form['email']
-        tel = request.form['tel']
+        # 获取用户提交的修改数据
+        new_username = request.form['username']
+        new_email = request.form['email']
+        new_tel = request.form['tel']
 
-        changes = []
-        if user['username'] != username:
-            user['username'] = username
-            changes.append("Username changed.")
-        if user['email'] != email:
-            user['email'] = email
-            changes.append("Email changed.")
-        if user['tel'] != tel:
-            user['tel'] = tel
-            changes.append("Phone number changed.")
+        # 检查是否有变化
+        changes_made = False
+        if new_username != user["username"]:
+            user["username"] = new_username
+            changes_made = True
+        if new_email != user["email"]:
+            user["email"] = new_email
+            changes_made = True
+        if new_tel != user["tel"]:
+            user["tel"] = new_tel
+            changes_made = True
         
-        if not changes:
-            return "No changes made."
-        
-        return render_template_string("""
-        <h2>Modify User</h2>
-        <p>{{ changes | join(', ') }}</p>
-        """, changes=changes)
-    
-    return "User not found."
+        if changes_made:
+            return render_template_string("""
+            <h2>User Information Modified Successfully</h2>
+            <p><a href="/dashboard">Go back to Dashboard</a></p>
+            """)
+        else:
+            return render_template_string("""
+            <h2>No Changes Made</h2>
+            <p>There were no changes to your information. Please modify at least one field.</p>
+            <p><a href="/modify_user/{{ meter_no }}">Go back and make changes</a></p>
+            """, meter_no=meter_no)
+    else:
+        return "User not found."
 
 @app.route('/delete_user', methods=['GET', 'POST'])
 def delete_user():
