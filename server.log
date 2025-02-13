@@ -92,3 +92,23 @@
 2025-02-13 07:33:00,401 - INFO - 127.0.0.1 - - [13/Feb/2025 07:33:00] "GET /compare_area_avg_form HTTP/1.1" 200 -
 2025-02-13 07:33:02,731 - INFO - 127.0.0.1 - - [13/Feb/2025 07:33:02] "GET /set_budget_form HTTP/1.1" 200 -
 2025-02-13 07:33:04,907 - INFO - 127.0.0.1 - - [13/Feb/2025 07:33:04] "GET /check_budget_form HTTP/1.1" 200 -
+2025-02-13 07:41:32,791 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 07:41:32,791 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 07:41:32,792 - INFO -  * Restarting with stat
+2025-02-13 07:41:33,003 - WARNING -  * Debugger is active!
+2025-02-13 07:41:33,003 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 07:41:36,435 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:36] "GET / HTTP/1.1" 200 -
+2025-02-13 07:41:39,607 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:39] "GET /query_usage_form HTTP/1.1" 200 -
+2025-02-13 07:41:45,092 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:45] "GET / HTTP/1.1" 200 -
+2025-02-13 07:41:47,986 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:47] "GET /register_form HTTP/1.1" 200 -
+2025-02-13 07:41:50,555 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:50] "GET /meter_reading_form HTTP/1.1" 200 -
+2025-02-13 07:41:53,450 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:53] "GET /compare_area_avg_form HTTP/1.1" 200 -
+2025-02-13 07:41:57,907 - INFO - 127.0.0.1 - - [13/Feb/2025 07:41:57] "GET /set_budget_form HTTP/1.1" 200 -
+2025-02-13 07:42:00,546 - INFO - 127.0.0.1 - - [13/Feb/2025 07:42:00] "GET /check_budget_form HTTP/1.1" 200 -
+2025-02-13 07:45:25,986 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 07:45:25,986 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 07:45:25,986 - INFO -  * Restarting with stat
+2025-02-13 07:45:26,154 - WARNING -  * Debugger is active!
+2025-02-13 07:45:26,154 - INFO -  * Debugger PIN: 221-723-748

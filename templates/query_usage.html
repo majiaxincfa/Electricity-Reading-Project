@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>查询用电记录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Electricity Usage</title>
 </head>
 <body>
-    <h1>查询用户用电记录</h1>
+    <h1>Query Electricity Usage</h1>
     <form action="/query_usage" method="post">
-        账户ID: <input type="text" name="account_id" required><br>
-        <input type="submit" value="查询">
+        Account ID: <input type="text" name="account_id" required><br><br>
+        Select Time Period:
+        <select name="period" required>
+            <option value="last_30_min">Last 30 Minutes</option>
+            <option value="today">Today</option>
+            <option value="this_week">This Week</option>
+            <option value="this_month">This Month</option>
+            <option value="last_month">Last Month</option>
+            <option value="last_month_bill">Last Month's Bill (kWh)</option>
+        </select><br><br>
+        <input type="submit" value="Query Usage">
     </form>
 </body>
 </html>
+
