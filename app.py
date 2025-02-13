@@ -39,15 +39,6 @@ def query_usage_form():
 def compare_area_avg_form():
     return render_template('compare_area_avg.html')
 
-# 设定预算页面
-@app.route('/set_budget_form')
-def set_budget_form():
-    return render_template('set_budget.html')
-
-# 检查预算页面
-@app.route('/check_budget_form')
-def check_budget_form():
-    return render_template('check_budget.html')
 
 # 账户注册
 @app.route('/register', methods=['POST'])

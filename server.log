@@ -112,3 +112,48 @@
 2025-02-13 07:45:25,986 - INFO -  * Restarting with stat
 2025-02-13 07:45:26,154 - WARNING -  * Debugger is active!
 2025-02-13 07:45:26,154 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 07:47:40,215 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 07:47:40,215 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 07:47:40,216 - INFO -  * Restarting with stat
+2025-02-13 07:47:40,391 - WARNING -  * Debugger is active!
+2025-02-13 07:47:40,391 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 07:47:45,003 - INFO - 127.0.0.1 - - [13/Feb/2025 07:47:45] "GET / HTTP/1.1" 200 -
+2025-02-13 07:47:48,110 - INFO - 127.0.0.1 - - [13/Feb/2025 07:47:48] "GET /register_form HTTP/1.1" 200 -
+2025-02-13 07:48:21,629 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:21] "[35m[1mPOST /register HTTP/1.1[0m" 201 -
+2025-02-13 07:48:29,851 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:29] "GET / HTTP/1.1" 200 -
+2025-02-13 07:48:31,686 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:31] "GET /meter_reading_form HTTP/1.1" 200 -
+2025-02-13 07:48:42,328 - INFO - Meter Reading - Account: 12345678, Time: 2025-02-13 07:48:42, Reading: 88.0
+2025-02-13 07:48:42,329 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:42] "[35m[1mPOST /meter_reading HTTP/1.1[0m" 201 -
+2025-02-13 07:48:49,267 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:49] "GET /query_usage_form HTTP/1.1" 200 -
+2025-02-13 07:48:53,779 - INFO - 127.0.0.1 - - [13/Feb/2025 07:48:53] "POST /query_usage HTTP/1.1" 200 -
+2025-02-13 07:51:21,997 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 07:51:21,997 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 07:51:21,997 - INFO -  * Restarting with stat
+2025-02-13 07:51:22,164 - WARNING -  * Debugger is active!
+2025-02-13 07:51:22,165 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 07:51:26,651 - INFO - 127.0.0.1 - - [13/Feb/2025 07:51:26] "GET / HTTP/1.1" 200 -
+2025-02-13 07:51:33,352 - INFO - 127.0.0.1 - - [13/Feb/2025 07:51:33] "GET /register_form HTTP/1.1" 200 -
+2025-02-13 07:51:46,311 - INFO - 127.0.0.1 - - [13/Feb/2025 07:51:46] "[35m[1mPOST /register HTTP/1.1[0m" 201 -
+2025-02-13 07:52:01,627 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:01] "GET / HTTP/1.1" 200 -
+2025-02-13 07:52:40,764 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:40] "GET /meter_reading_form HTTP/1.1" 200 -
+2025-02-13 07:52:54,966 - INFO - Meter Reading - Account: 12345678, Time: 2025-02-13 07:52:54, Reading: 90.0
+2025-02-13 07:52:54,966 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:54] "[35m[1mPOST /meter_reading HTTP/1.1[0m" 201 -
+2025-02-13 07:52:56,350 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:56] "GET /meter_reading_form HTTP/1.1" 200 -
+2025-02-13 07:52:57,168 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:57] "GET / HTTP/1.1" 200 -
+2025-02-13 07:52:58,777 - INFO - 127.0.0.1 - - [13/Feb/2025 07:52:58] "GET /query_usage_form HTTP/1.1" 200 -
+2025-02-13 07:53:26,469 - INFO - 127.0.0.1 - - [13/Feb/2025 07:53:26] "POST /query_usage HTTP/1.1" 200 -
+2025-02-13 07:53:30,892 - INFO - 127.0.0.1 - - [13/Feb/2025 07:53:30] "POST /query_usage HTTP/1.1" 200 -
+2025-02-13 07:53:37,028 - INFO - 127.0.0.1 - - [13/Feb/2025 07:53:37] "GET /compare_area_avg_form HTTP/1.1" 200 -
+2025-02-13 07:55:20,158 - INFO - 127.0.0.1 - - [13/Feb/2025 07:55:20] "GET /set_budget_form HTTP/1.1" 200 -
+2025-02-13 07:55:31,698 - INFO - 127.0.0.1 - - [13/Feb/2025 07:55:31] "GET /check_budget_form HTTP/1.1" 200 -
+2025-02-13 08:10:17,866 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-13 08:10:17,866 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 08:10:17,867 - INFO -  * Restarting with stat
+2025-02-13 08:10:18,036 - WARNING -  * Debugger is active!
+2025-02-13 08:10:18,037 - INFO -  * Debugger PIN: 221-723-748
+2025-02-13 08:10:25,444 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:25] "GET / HTTP/1.1" 200 -
+2025-02-13 08:10:34,380 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:34] "GET /register_form HTTP/1.1" 200 -
+2025-02-13 08:10:37,342 - INFO - 127.0.0.1 - - [13/Feb/2025 08:10:37] "GET / HTTP/1.1" 200 -
