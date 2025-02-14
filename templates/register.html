@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Account</title>
+</head>
+<body>
+    <h1>Register Account</h1>
+    <form action="/register" method="post">
+        Account ID: <input type="text" name="meter_id" required><br>
+        Name: <input type="text" name="name" required><br>
+        Area: 
+        <select name="area">
+            <option value="Downtown">Downtown</option>
+            <option value="Suburbs">Suburbs</option>
+            <option value="Industrial">Industrial</option>
+        </select><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
