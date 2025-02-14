@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Meter Reading</title>
+</head>
+<body>
+    <h1>Submit Meter Reading</h1>
+    <form action="/meter_reading" method="post">
+        Account ID: <input type="text" name="account_id" required><br>
+        Reading (kWh): <input type="number" step="0.1" name="reading" required><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
