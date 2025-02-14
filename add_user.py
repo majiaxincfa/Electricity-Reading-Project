@@ -9,7 +9,7 @@ app = Flask(__name__)
 users = [
     {
         "username": "John Doe",
-        "meter_no": "123-456-789",
+        "meter_id": "123-456-789",
         "dwelling_type": "Apartment",
         "region": "Central",
         "area": "Downtown",
@@ -33,33 +33,33 @@ dwelling_types = [
 
 regions = ["Central", "East", "West", "North"]
 
-# Function to save meter_no, time, and reading to a local CSV file as DataFrame
-def generate_unique_meter_no():
+# Function to save meter_id, time, and reading to a local CSV file as DataFrame
+def generate_unique_meter_id():
     while True:
         # Generate a random 9-digit number
-        new_meter_no = str(random.randint(100000000, 999999999))  # Random 9-digit number
-        if not any(user['meter_no'] == new_meter_no for user in users):
-            return new_meter_no
+        new_meter_id = str(random.randint(100000000, 999999999))  # Random 9-digit number
+        if not any(user['meter_id'] == new_meter_id for user in users):
+            return new_meter_id
 
-def save_meter_no_to_csv(meter_no, reading):
+def save_meter_id_to_csv(meter_id, reading):
     try:
-        timestamp = datetime.now().replace(hour=10, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
+        timestamp = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
 
         # Check if the CSV file exists
         try:
-            meter_df = pd.read_csv('meter_no.csv', dtype=str)  # Ensure all data is read as strings
+            meter_df = pd.read_csv('meter_id.csv', dtype=str)  # Ensure all data is read as strings
         except FileNotFoundError:
             # If file doesn't exist, create a new one with headers
-            meter_df = pd.DataFrame(columns=["meter_no", "time", "reading"], dtype=str)
+            meter_df = pd.DataFrame(columns=["meter_id", "time", "reading"], dtype=str)
 
-        # Append the new meter_no, timestamp, and reading to the DataFrame
-        new_row = pd.DataFrame({"meter_no": [meter_no], "time": [timestamp], "reading": [str(reading)]}, dtype=str)
+        # Append the new meter_id, timestamp, and reading to the DataFrame
+        new_row = pd.DataFrame({"meter_id": [meter_id], "time": [timestamp], "reading": [str(reading)]}, dtype=str)
         meter_df = pd.concat([meter_df, new_row], ignore_index=True)
 
         # Save DataFrame to CSV file as text (all columns are treated as strings)
-        meter_df.to_csv('meter_no.csv', index=False, header=True, encoding='utf-8')
+        meter_df.to_csv('meter_id.csv', index=False, header=True, encoding='utf-8')
     except Exception as e:
-        print(f"Error saving meter_no: {e}")
+        print(f"Error saving meter_id: {e}")
 
 
 @app.route('/')
@@ -104,15 +104,15 @@ def meter_reading():
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'GET':
-        meter_no = generate_unique_meter_no()  # 生成唯一的 meter_no
+        meter_id = generate_unique_meter_id()  # 生成唯一的 meter_id
         return render_template_string("""
         <h2>Add New User</h2>
         <form action="/add_user" method="post">
             <label for="username">Username:</label>
             <input type="text" name="username" required><br><br>
 
-            <label for="meter_no">Meter Number:</label>
-            <input type="text" name="meter_no" value="{{ meter_no }}" readonly><br><br>
+            <label for="meter_id">Meter ID:</label>
+            <input type="text" name="meter_id" value="{{ meter_id }}" readonly><br><br>
 
             <label for="dwelling_type">Dwelling Type:</label>
             <select name="dwelling_type" required>
@@ -148,15 +148,15 @@ def add_user():
 
             <button type="submit">Submit</button>
         </form>
-        """, dwelling_types=dwelling_types, regions=regions, meter_no=meter_no)
+        """, dwelling_types=dwelling_types, regions=regions, meter_id=meter_id)
 
     if request.method == 'POST':
-        meter_no = request.form['meter_no']
-        timestamp = datetime.now().replace(hour=10, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
+        meter_id = request.form['meter_id']
+        timestamp = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
 
         user_data = {
             "username": request.form['username'],
-            "meter_no": meter_no,
+            "meter_id": meter_id,
             "dwelling_type": request.form['dwelling_type'],
             "region": request.form['region'],
             "area": request.form['area'],
@@ -169,7 +169,7 @@ def add_user():
             "time": timestamp
         }
         users.append(user_data)
-        save_meter_no_to_csv(meter_no, 0)  # Save the initial reading (0)
+        save_meter_id_to_csv(meter_id, 0)  # Save the initial reading (0)
 
         return jsonify({
             'status': 'success',
@@ -184,20 +184,20 @@ def get_user():
         return render_template_string("""
         <h2>View User</h2>
         <form action="/get_user" method="post">
-            <label for="meter_no">Meter Number (e.g. 123-456-789):</label>
-            <input type="text" name="meter_no" required><br><br>
+            <label for="meter_id">Meter ID (e.g. 123-456-789):</label>
+            <input type="text" name="meter_id" required><br><br>
             <button type="submit">Search</button>
         </form>
         """)
 
     if request.method == 'POST':
-        meter_no = request.form['meter_no']
-        user = next((u for u in users if u['meter_no'] == meter_no), None)
+        meter_id = request.form['meter_id']
+        user = next((u for u in users if u['meter_id'] == meter_id), None)
         if user:
             return render_template_string("""
             <h3>User Details:</h3>
             <p><strong>Username:</strong> {{ user['username'] }}</p>
-            <p><strong>Meter Number:</strong> {{ user['meter_no'] }}</p>
+            <p><strong>Meter ID:</strong> {{ user['meter_id'] }}</p>
             <p><strong>Dwelling Type:</strong> {{ user['dwelling_type'] }}</p>
             <p><strong>Region:</strong> {{ user['region'] }}</p>
             <p><strong>Area:</strong> {{ user['area'] }}</p>
