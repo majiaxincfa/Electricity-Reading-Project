@@ -151,6 +151,7 @@ def meter_reading():
             <br><br>
             <button type="submit">Submit</button>
         </form>
+        <p><a href="/dashboard">Return to Dashboard</a></p> 
 
         <script>
         document.getElementById("meterForm").addEventListener("submit", function(event) {
@@ -256,6 +257,7 @@ def add_user():
 
             <button type="submit">Submit</button>
         </form>
+        <p><a href="/dashboard">Return to Dashboard</a></p> 
         """, dwelling_types=dwelling_types, regions=regions, meter_id=meter_id)
 
     if request.method == 'POST':
@@ -296,6 +298,7 @@ def get_user():
             <input type="text" name="meter_id" required><br><br>
             <button type="submit">Search</button>
         </form>
+        <p><a href="/dashboard">Return to Dashboard</a></p> 
         """)
 
     if request.method == 'POST':
