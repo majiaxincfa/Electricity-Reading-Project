@@ -8,10 +8,37 @@ import threading
 from datetime import datetime
 from data_maintainance import archive_data
 import os
+import logging
 
 
 
 app = Flask(__name__)
+
+
+# ---------------logs----------------
+# 配置日志
+logging.basicConfig(
+    filename='server.log',  # 日志文件
+    level=logging.INFO,  # 日志级别
+    format='%(asctime)s - %(levelname)s - %(message)s'  # 日志格式
+)
+
+# 记录每个请求的信息
+@app.before_request
+def log_request_info():
+    log_data = {
+        "IP": request.remote_addr,
+        "Method": request.method,
+        "Path": request.path,
+        "Time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "Args": request.args.to_dict(),
+        "Data": request.get_json() if request.is_json else request.form.to_dict()
+    }
+    logging.info(f"Request: {log_data}")
+
+# ---------------logs----------------
+
+
 
 # Sample data to simulate database
 users = [
@@ -122,7 +149,7 @@ def store_data_in_df(data):
 def scheduled_task():
     while True:
         current_time = datetime.now()
-        if current_time.hour == 15:  # 00:00 触发
+        if current_time.hour == 0:  # 00:00 触发
             print(f"Running data maintenance at {current_time}")
             archive_data()  # 数据归档
             time.sleep(60)  # 避免多次触发，暂停 1 分钟
@@ -272,6 +299,7 @@ def save_users_to_csv():
 
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
+    global users
     if request.method == 'GET':
         meter_id = generate_unique_meter_id()  # 生成唯一的 meter_id
         return render_template_string("""
@@ -342,27 +370,30 @@ def add_user():
         save_users_to_csv()  # 保存到本地 CSV
         save_meter_id_to_csv(meter_id, 0)  # Save the initial reading (0)
 
+        user_dict = user_data.iloc[0].to_dict()
+
         return render_template_string("""
         <h2>Registration Successful!</h2>
-        <p><strong>Username:</strong> {{ user_data.username }}</p>
-        <p><strong>Meter ID:</strong> {{ user_data.meter_id }}</p>
-        <p><strong>Dwelling Type:</strong> {{ user_data.dwelling_type }}</p>
-        <p><strong>Region:</strong> {{ user_data.region }}</p>
-        <p><strong>Area:</strong> {{ user_data.area }}</p>
-        <p><strong>Community:</strong> {{ user_data.community }}</p>
-        <p><strong>Unit:</strong> {{ user_data.unit }}</p>
-        <p><strong>Floor:</strong> {{ user_data.floor }}</p>
-        <p><strong>Email:</strong> {{ user_data.email }}</p>
-        <p><strong>Phone:</strong> {{ user_data.tel }}</p>
-        <p><strong>Initial Reading:</strong> {{ user_data.reading }}</p>
-        <p><strong>Time:</strong> {{ user_data.time }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Meter ID:</strong> {{ user.meter_id }}</p>
+        <p><strong>Dwelling Type:</strong> {{ user.dwelling_type }}</p>
+        <p><strong>Region:</strong> {{ user.region }}</p>
+        <p><strong>Area:</strong> {{ user.area }}</p>
+        <p><strong>Community:</strong> {{ user.community }}</p>
+        <p><strong>Unit:</strong> {{ user.unit }}</p>
+        <p><strong>Floor:</strong> {{ user.floor }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.tel }}</p>
+        <p><strong>Initial Reading:</strong> {{ user.reading }}</p>
+        <p><strong>Time:</strong> {{ user.time }}</p>
         <br>
         <a href="/dashboard"><button>Return to Dashboard</button></a>
-        """, user_data=user_data)
+        """, user=user_dict)
 
 
 @app.route('/get_user', methods=['GET', 'POST'])
 def get_user():
+    global users
     if request.method == 'GET':
         return render_template_string("""
         <h2>View User</h2>
