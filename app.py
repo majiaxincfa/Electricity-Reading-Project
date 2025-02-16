@@ -7,6 +7,9 @@ import time
 import threading
 from datetime import datetime
 from data_maintainance import archive_data
+import os
+
+
 
 app = Flask(__name__)
 
@@ -41,10 +44,13 @@ regions = ["Central", "East", "West", "North"]
 # Function to save meter_id, time, and reading to a local CSV file as DataFrame
 def generate_unique_meter_id():
     while True:
-        # Generate a random 9-digit number
-        new_meter_id = str(random.randint(100000000, 999999999))  # Random 9-digit number
-        if not any(user['meter_id'] == new_meter_id for user in users):
+        # 生成 9 位随机字符串作为新 meter_id
+        new_meter_id = str(random.randint(100000000, 999999999))  
+
+        # 检查 `meter_id` 是否已存在于 users DataFrame
+        if new_meter_id not in users["meter_id"].astype(str).values:
             return new_meter_id
+
 
 
 #初始化临时dataframe
@@ -88,25 +94,35 @@ def save_meter_id_to_csv(meter_id, reading):
 executor = ThreadPoolExecutor(max_workers=10)
 
 def store_data_in_df(data):
-    """后台线程用来处理数据存储。将新输入的meterreading保存到临时dataframe中。"""
+    """后台线程用来处理数据存储。将新输入的meterreading保存到临时dataframe中，并同步更新users的reading"""
+    global data_store, users
     
-    print(data)
+    print("Storing new meter reading:", data)
     time.sleep(1)
 
-    global data_store
-    
-    # 追加数据到 临时DataFrame
+    # 追加数据到 data_store
     data_store = pd.concat([data_store, data], ignore_index=True)
-    print(f"Data stored successfully!")
+    
+    # 更新 users 里的 reading 值
+    for index, row in data_store.iterrows():
+        meter_id = row["meter_id"]
+        new_reading = row["reading"]
 
-    #假设数据会被存储到文件或数据库,测试用
-    #data_store.to_csv('local_db.csv', index=False) 
+        # **正确写法：用 loc 直接更新 DataFrame**
+        users.loc[users["meter_id"] == meter_id, "reading"] = new_reading
+        print(f"Updated {meter_id} reading in users: {new_reading}")
+
+
+    # **同步保存到 CSV**
+    save_users_to_csv()
+    print("Data stored successfully!")
+
 
 # **后台线程：每天 00:00 - 00:59 自动存储数据**
 def scheduled_task():
     while True:
         current_time = datetime.now()
-        if current_time.hour == 0:  # 00:00 触发
+        if current_time.hour == 15:  # 00:00 触发
             print(f"Running data maintenance at {current_time}")
             archive_data()  # 数据归档
             time.sleep(60)  # 避免多次触发，暂停 1 分钟
@@ -199,8 +215,8 @@ def meter_reading():
         time = data["time"]
         reading = data["reading"]
 
-        #check meterID是否存在于库中,临时库和本地库
-        if meter_id not in data_store["meter_id"].values and meter_id not in local_db["meter_id"].values:
+        #check meterID是否存在于users
+        if meter_id not in users["meter_id"].values:
             return jsonify({"status": "error", "message": "You are not registered. Please register first."}), 403
 
         
@@ -214,16 +230,44 @@ def meter_reading():
             return jsonify({"status": "error", "message": "System maintenance in progress. Please try again after 1am."}), 403
 
         
-        # 追加数据到 DataFrame,非线程版本
+        # 追加数据到 `data_store`，然后同步更新 `users`
         new_data = pd.DataFrame([{"meter_id": meter_id, "time": formatted_time, "reading": reading}])
-        #print(new_data)
-        # data_store = pd.concat([data_store, new_data], ignore_index=True)
-        
-        # 启动线程来存储数据
+
+        # 启动线程存储数据并 **同步 `users` 里的 `reading`
         executor.submit(store_data_in_df, new_data)
 
-        # 返回数据提示用户已经成功输入
-        return jsonify({"status": "success", "message": f"We have received: {meter_id}, {formatted_time}, {reading}"}), 201
+        # `users` 里同步 `reading` 更新
+        users.loc[users["meter_id"] == str(meter_id), "reading"] = reading  
+        print(f"Updated {meter_id} reading in users: {reading}")  # 调试信息
+
+
+        # 让用户知道 `reading` 已被正确存储
+        return jsonify({"status": "success", "message": f"New reading saved: {meter_id}, {formatted_time}, {reading}"}), 201
+
+
+
+
+# -------------user_management start----------------
+
+# 定义 CSV 文件路径
+USERS_CSV_FILE = 'users.csv'
+
+# **尝试加载本地用户数据为 DataFrame**
+if os.path.exists(USERS_CSV_FILE):
+    users = pd.read_csv(USERS_CSV_FILE, dtype={"meter_id": str})  # 强制 meter_id 为整数
+else:
+    users = pd.DataFrame(columns=[
+        "username", "meter_id", "dwelling_type", "region", "area", "community",
+        "unit", "floor", "email", "tel", "reading", "time"
+    ])
+
+
+
+def save_users_to_csv():
+    """
+    将 `users` 数据保存到 CSV 文件，以防止数据丢失。
+    """
+    users.to_csv(USERS_CSV_FILE, index=False, encoding='utf-8')
 
 
 @app.route('/add_user', methods=['GET', 'POST'])
@@ -280,9 +324,9 @@ def add_user():
         meter_id = request.form['meter_id']
         timestamp = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
 
-        user_data = {
+        user_data = pd.DataFrame([{
             "username": request.form['username'],
-            "meter_id": meter_id,
+            "meter_id": int(meter_id),  # 确保是整数
             "dwelling_type": request.form['dwelling_type'],
             "region": request.form['region'],
             "area": request.form['area'],
@@ -291,17 +335,30 @@ def add_user():
             "floor": request.form['floor'],
             "email": request.form['email'],
             "tel": request.form['tel'],
-            "reading": 0,  # Set initial reading to 0
+            "reading": 0,  # 初始读数设为 0
             "time": timestamp
-        }
-        users.append(user_data)
+        }])
+        users = pd.concat([users, user_data], ignore_index=True)
+        save_users_to_csv()  # 保存到本地 CSV
         save_meter_id_to_csv(meter_id, 0)  # Save the initial reading (0)
 
-        return jsonify({
-            'status': 'success',
-            'message': 'User added successfully!',
-            'user_data': user_data
-        })
+        return render_template_string("""
+        <h2>Registration Successful!</h2>
+        <p><strong>Username:</strong> {{ user_data.username }}</p>
+        <p><strong>Meter ID:</strong> {{ user_data.meter_id }}</p>
+        <p><strong>Dwelling Type:</strong> {{ user_data.dwelling_type }}</p>
+        <p><strong>Region:</strong> {{ user_data.region }}</p>
+        <p><strong>Area:</strong> {{ user_data.area }}</p>
+        <p><strong>Community:</strong> {{ user_data.community }}</p>
+        <p><strong>Unit:</strong> {{ user_data.unit }}</p>
+        <p><strong>Floor:</strong> {{ user_data.floor }}</p>
+        <p><strong>Email:</strong> {{ user_data.email }}</p>
+        <p><strong>Phone:</strong> {{ user_data.tel }}</p>
+        <p><strong>Initial Reading:</strong> {{ user_data.reading }}</p>
+        <p><strong>Time:</strong> {{ user_data.time }}</p>
+        <br>
+        <a href="/dashboard"><button>Return to Dashboard</button></a>
+        """, user_data=user_data)
 
 
 @app.route('/get_user', methods=['GET', 'POST'])
@@ -319,7 +376,7 @@ def get_user():
 
     if request.method == 'POST':
         meter_id = request.form['meter_id']
-        user = next((u for u in users if u['meter_id'] == meter_id), None)
+        user = users[users["meter_id"] == meter_id].to_dict(orient="records")  # **转换为字典列表**
         if user:
             return render_template_string("""
             <h3>User Details:</h3>
@@ -334,13 +391,19 @@ def get_user():
             <p><strong>Email:</strong> {{ user['email'] }}</p>
             <p><strong>Phone:</strong> {{ user['tel'] }}</p>
             <p><strong>Reading:</strong> {{ user['reading'] }}</p>
-            """, user=user)
+            <br>
+            <a href="/dashboard"><button>Return to Dashboard</button></a>
+            """, user=user[0])
         else:
-            return jsonify({
-                'status': 'error',
-                'message': 'User not found.'
-            })
+            return render_template_string("""
+            <h3 style="color:red;">User Not Found</h3>
+            <p>No user found with Meter ID: <strong>{{ meter_id }}</strong></p>
+            <br>
+            <a href="/get_user"><button>Try Again</button></a>
+            <a href="/dashboard"><button>Return to Dashboard</button></a>
+            """, meter_id=meter_id)
 
+# -------------user_management end----------------
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)
