@@ -354,7 +354,7 @@ def add_user():
 
         user_data = pd.DataFrame([{
             "username": request.form['username'],
-            "meter_id": int(meter_id),  # 确保是整数
+            "meter_id": meter_id,  
             "dwelling_type": request.form['dwelling_type'],
             "region": request.form['region'],
             "area": request.form['area'],
