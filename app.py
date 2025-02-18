@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 import time
 import threading
 from datetime import datetime
-from data_maintainance import archive_data
+from data_maintenance import archive_data
 import os
 import logging
 
@@ -67,6 +67,9 @@ dwelling_types = [
 ]
 
 regions = ["Central", "East", "West", "North"]
+
+METER_CSV_PATH = 'meter_id.csv'
+LOCAL_DB_FILE = "local_db.csv"
 
 # Function to save meter_id, time, and reading to a local CSV file as DataFrame
 def generate_unique_meter_id():
@@ -129,6 +132,7 @@ def store_data_in_df(data):
 
     # 追加数据到 data_store
     data_store = pd.concat([data_store, data], ignore_index=True)
+
     
     # 更新 users 里的 reading 值
     for index, row in data_store.iterrows():
@@ -142,6 +146,14 @@ def store_data_in_df(data):
 
     # **同步保存到 CSV**
     save_users_to_csv()
+
+    if os.path.exists(LOCAL_DB_FILE):
+        existing_data = pd.read_csv(LOCAL_DB_FILE)
+        data_new = pd.concat([existing_data, data_store], ignore_index=True)
+    else:
+        data_new = data_store
+    data_new.to_csv(LOCAL_DB_FILE, index=False)
+
     print("Data stored successfully!")
 
 
