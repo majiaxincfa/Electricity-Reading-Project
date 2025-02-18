@@ -7,3 +7,13 @@ username,meter_id,dwelling_type,region,area,community,unit,floor,email,tel,readi
 Jiaxin,123-456-789,3-room,Central,Bishan,Greenfield Estate,#05-123,5,jiaxin@example.com,80900378,12410,2025-02-18 00:00:00
 Haixin,987-654-321,3-room,East,Outram,Greenfield Estate,#03-123,5,haixin@example.com,80901263,1280,2025-02-18 00:00:00
 zhangjing,987-654-320,3-room,West,Outram,Greenfield Estate,#03-124,2,zhangjing@example.com,80901264,12355,2025-02-18 00:00:00
+C240050,123-456-780,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C240050@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,123-456-788,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C240050@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,123-456-781,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C240050@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,123-456-783,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C240050@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,123-456-782,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C240050@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,111-111-111,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C5243650@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,222-222-222,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C5243650@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,111-112-111,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C5243650@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,111-000-000,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C5243650@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
+C240050,111-000-001,1-room / 2-room,Central,Singapore ORQ,gq3gtwe,gs3225,5,C5243650@e.ntu.edu.sg,84523970,0,2025-02-18 00:00:00
