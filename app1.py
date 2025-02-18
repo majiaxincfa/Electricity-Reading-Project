@@ -149,7 +149,7 @@ maintenance_thread = threading.Thread(target=scheduled_task, daemon=True)
 maintenance_thread.start()
 
 @app.route('/')
-def index():
+def index1():
     """Main Page"""
     return render_template('index1.html')
 
