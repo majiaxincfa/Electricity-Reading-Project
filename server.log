@@ -1238,3 +1238,43 @@
 2025-02-18 18:02:51,401 - INFO -  * Restarting with stat
 2025-02-18 18:02:51,822 - WARNING -  * Debugger is active!
 2025-02-18 18:02:51,822 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:06:24,779 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 18:06:24,835 - INFO -  * Restarting with stat
+2025-02-18 18:06:25,277 - WARNING -  * Debugger is active!
+2025-02-18 18:06:25,277 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:06:27,571 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 18:06:27,633 - INFO -  * Restarting with stat
+2025-02-18 18:06:28,110 - WARNING -  * Debugger is active!
+2025-02-18 18:06:28,110 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:06:57,465 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 18:06:57,465 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 18:06:57,466 - INFO -  * Restarting with stat
+2025-02-18 18:06:57,904 - WARNING -  * Debugger is active!
+2025-02-18 18:06:57,904 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:06:59,076 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:06:59', 'Args': {}, 'Data': {}}
+2025-02-18 18:06:59,082 - INFO - 127.0.0.1 - - [18/Feb/2025 18:06:59] "GET / HTTP/1.1" 200 -
+2025-02-18 18:07:00,867 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-18 18:07:00', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:00,870 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:00] "GET /query_usage HTTP/1.1" 200 -
+2025-02-18 18:07:04,040 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:07:04', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:04,041 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:04] "GET / HTTP/1.1" 200 -
+2025-02-18 18:07:05,083 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 18:07:05', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:05,085 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:05] "GET /register HTTP/1.1" 200 -
+2025-02-18 18:07:07,059 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:07:07', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:07,063 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:07] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:07:09,363 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:07:09', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:09,364 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:09] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:07:11,379 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:07:11', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:11,379 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:11] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:07:13,332 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/view_user', 'Time': '2025-02-18 18:07:13', 'Args': {}, 'Data': {'meter_id': '111-000-000'}}
+2025-02-18 18:07:13,335 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:13] "POST /view_user HTTP/1.1" 200 -
+2025-02-18 18:07:14,568 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:07:14', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:14,569 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:14] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:07:16,244 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 18:07:16', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:16,244 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:16] "GET /register HTTP/1.1" 200 -
+2025-02-18 18:07:19,075 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 18:07:19', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-032', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 18:07:19,077 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:19] "[31m[1mPOST /register HTTP/1.1[0m" 400 -
+2025-02-18 18:07:25,242 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 18:07:25', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-031', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 18:07:25,253 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:25] "POST /register HTTP/1.1" 200 -
+2025-02-18 18:07:27,010 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:07:27', 'Args': {}, 'Data': {}}
+2025-02-18 18:07:27,011 - INFO - 127.0.0.1 - - [18/Feb/2025 18:07:27] "GET / HTTP/1.1" 200 -

@@ -236,6 +236,10 @@ def meter_reading():
         return jsonify({"status": "success", "message": f"New reading saved: {meter_id}, {formatted_time}, {reading}"}), 201
 
 
+@app.route('/query_usage', methods=['GET'])
+def query_usage():
+    return render_template('query_usage.html')  # 渲染新页面
+
 
 
 # -------------user_management start----------------
