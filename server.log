@@ -1354,3 +1354,17 @@
 2025-02-18 18:11:40,696 - INFO - 127.0.0.1 - - [18/Feb/2025 18:11:40] "POST /view_user HTTP/1.1" 200 -
 2025-02-18 18:11:42,447 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:11:42', 'Args': {}, 'Data': {}}
 2025-02-18 18:11:42,447 - INFO - 127.0.0.1 - - [18/Feb/2025 18:11:42] "GET / HTTP/1.1" 200 -
+2025-02-18 18:12:32,381 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 18:12:32,381 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 18:12:32,382 - INFO -  * Restarting with stat
+2025-02-18 18:12:33,249 - WARNING -  * Debugger is active!
+2025-02-18 18:12:33,249 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:12:34,214 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:12:34', 'Args': {}, 'Data': {}}
+2025-02-18 18:12:34,218 - INFO - 127.0.0.1 - - [18/Feb/2025 18:12:34] "GET / HTTP/1.1" 200 -
+2025-02-18 18:12:37,861 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-18 18:12:37', 'Args': {}, 'Data': {}}
+2025-02-18 18:12:37,864 - INFO - 127.0.0.1 - - [18/Feb/2025 18:12:37] "GET /query_usage HTTP/1.1" 200 -
+2025-02-18 18:12:44,061 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-18 18:12:44', 'Args': {}, 'Data': {'meter_id': '111-000-000', 'query_type': 'today', 'start_time': '', 'end_time': ''}}
+2025-02-18 18:12:44,305 - INFO - 127.0.0.1 - - [18/Feb/2025 18:12:44] "POST /query_usage HTTP/1.1" 200 -
+2025-02-18 18:13:00,976 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-18 18:13:00', 'Args': {}, 'Data': {'meter_id': '123-456-789', 'query_type': 'today', 'start_time': '', 'end_time': ''}}
+2025-02-18 18:13:01,068 - INFO - 127.0.0.1 - - [18/Feb/2025 18:13:01] "POST /query_usage HTTP/1.1" 200 -
