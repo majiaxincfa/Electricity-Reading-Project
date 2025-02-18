@@ -1083,3 +1083,158 @@
 2025-02-18 17:37:50,527 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
 2025-02-18 17:37:50,876 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
 2025-02-18 17:37:50,885 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=HxeDqfMEO1f8IbJ2V5I2 HTTP/1.1" 200 -
+2025-02-18 17:40:17,954 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:40:17,954 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:40:17,955 - INFO -  * Restarting with stat
+2025-02-18 17:40:18,408 - WARNING -  * Debugger is active!
+2025-02-18 17:40:18,408 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:40:19,885 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:40:19', 'Args': {}, 'Data': {}}
+2025-02-18 17:40:19,897 - INFO - 127.0.0.1 - - [18/Feb/2025 17:40:19] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-02-18 17:40:20,147 - INFO - 127.0.0.1 - - [18/Feb/2025 17:40:20] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-18 17:40:20,149 - INFO - 127.0.0.1 - - [18/Feb/2025 17:40:20] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-18 17:40:20,455 - INFO - 127.0.0.1 - - [18/Feb/2025 17:40:20] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=tK2PFfArYf73jn3nBylF HTTP/1.1" 200 -
+2025-02-18 17:40:20,456 - INFO - 127.0.0.1 - - [18/Feb/2025 17:40:20] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 17:42:15,031 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:42:15,092 - INFO -  * Restarting with stat
+2025-02-18 17:42:15,536 - WARNING -  * Debugger is active!
+2025-02-18 17:42:15,537 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:42:22,276 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:42:22,276 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:42:22,277 - INFO -  * Restarting with stat
+2025-02-18 17:42:22,836 - WARNING -  * Debugger is active!
+2025-02-18 17:42:22,837 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:42:24,866 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:42:24', 'Args': {}, 'Data': {}}
+2025-02-18 17:42:24,886 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:24] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-02-18 17:42:25,170 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:25] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-18 17:42:25,216 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:25] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-18 17:42:25,478 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:25] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 17:42:25,483 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:25] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=YJ8soicBhTaXoRNjBd01 HTTP/1.1" 200 -
+2025-02-18 17:42:45,978 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:42:45,978 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:42:45,979 - INFO -  * Restarting with stat
+2025-02-18 17:42:46,421 - WARNING -  * Debugger is active!
+2025-02-18 17:42:46,422 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:42:49,596 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:42:49', 'Args': {}, 'Data': {}}
+2025-02-18 17:42:49,600 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:49] "GET / HTTP/1.1" 200 -
+2025-02-18 17:42:51,341 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 17:42:51', 'Args': {}, 'Data': {}}
+2025-02-18 17:42:51,342 - INFO - 127.0.0.1 - - [18/Feb/2025 17:42:51] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 17:44:42,601 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:44:42', 'Args': {}, 'Data': {}}
+2025-02-18 17:44:42,601 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:42] "GET / HTTP/1.1" 200 -
+2025-02-18 17:44:45,010 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 17:44:45', 'Args': {}, 'Data': {}}
+2025-02-18 17:44:45,011 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:45] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 17:44:46,312 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:44:46', 'Args': {}, 'Data': {}}
+2025-02-18 17:44:46,313 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:46] "GET / HTTP/1.1" 200 -
+2025-02-18 17:44:47,397 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:44:47', 'Args': {}, 'Data': {}}
+2025-02-18 17:44:47,402 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:47] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:44:53,396 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:44:53', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-009', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:44:53,405 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:53] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:44:54,587 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:44:54', 'Args': {}, 'Data': {}}
+2025-02-18 17:44:54,588 - INFO - 127.0.0.1 - - [18/Feb/2025 17:44:54] "GET / HTTP/1.1" 200 -
+2025-02-18 17:45:06,174 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:45:06', 'Args': {}, 'Data': {}}
+2025-02-18 17:45:06,175 - INFO - 127.0.0.1 - - [18/Feb/2025 17:45:06] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:45:12,463 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:45:12', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-011', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:45:12,472 - INFO - 127.0.0.1 - - [18/Feb/2025 17:45:12] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:46:32,455 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:46:32', 'Args': {}, 'Data': {}}
+2025-02-18 17:46:32,455 - INFO - 127.0.0.1 - - [18/Feb/2025 17:46:32] "GET / HTTP/1.1" 200 -
+2025-02-18 17:46:34,382 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:46:34', 'Args': {}, 'Data': {}}
+2025-02-18 17:46:34,383 - INFO - 127.0.0.1 - - [18/Feb/2025 17:46:34] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:46:41,131 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:46:41', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-021', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:46:41,137 - INFO - 127.0.0.1 - - [18/Feb/2025 17:46:41] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:47:57,160 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:47:57', 'Args': {}, 'Data': {}}
+2025-02-18 17:47:57,161 - INFO - 127.0.0.1 - - [18/Feb/2025 17:47:57] "GET / HTTP/1.1" 200 -
+2025-02-18 17:47:59,278 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:47:59', 'Args': {}, 'Data': {}}
+2025-02-18 17:47:59,279 - INFO - 127.0.0.1 - - [18/Feb/2025 17:47:59] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:48:06,477 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:48:06', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-022', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:48:06,485 - INFO - 127.0.0.1 - - [18/Feb/2025 17:48:06] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:48:11,786 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:48:11', 'Args': {}, 'Data': {}}
+2025-02-18 17:48:11,787 - INFO - 127.0.0.1 - - [18/Feb/2025 17:48:11] "GET / HTTP/1.1" 200 -
+2025-02-18 17:51:14,264 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:51:14', 'Args': {}, 'Data': {}}
+2025-02-18 17:51:14,265 - INFO - 127.0.0.1 - - [18/Feb/2025 17:51:14] "GET / HTTP/1.1" 200 -
+2025-02-18 17:51:16,296 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 17:51:16', 'Args': {}, 'Data': {}}
+2025-02-18 17:51:16,297 - INFO - 127.0.0.1 - - [18/Feb/2025 17:51:16] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 17:51:49,487 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:51:49,549 - INFO -  * Restarting with stat
+2025-02-18 17:51:49,990 - WARNING -  * Debugger is active!
+2025-02-18 17:51:49,990 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:54:10,296 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:54:10,354 - INFO -  * Restarting with stat
+2025-02-18 17:54:10,786 - WARNING -  * Debugger is active!
+2025-02-18 17:54:10,787 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:56:25,058 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:56:25,114 - INFO -  * Restarting with stat
+2025-02-18 17:56:25,552 - WARNING -  * Debugger is active!
+2025-02-18 17:56:25,552 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:57:40,230 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:57:40,286 - INFO -  * Restarting with stat
+2025-02-18 17:57:40,744 - WARNING -  * Debugger is active!
+2025-02-18 17:57:40,744 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:59:04,793 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:59:04,848 - INFO -  * Restarting with stat
+2025-02-18 17:59:05,263 - WARNING -  * Debugger is active!
+2025-02-18 17:59:05,263 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:59:16,689 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:59:16,689 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:59:16,689 - INFO -  * Restarting with stat
+2025-02-18 17:59:17,143 - WARNING -  * Debugger is active!
+2025-02-18 17:59:17,144 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:59:20,059 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:59:20', 'Args': {}, 'Data': {}}
+2025-02-18 17:59:20,062 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:20] "GET / HTTP/1.1" 200 -
+2025-02-18 17:59:21,573 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:59:21', 'Args': {}, 'Data': {}}
+2025-02-18 17:59:21,576 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:21] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:59:26,308 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:59:26', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-032', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:59:26,317 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:26] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:59:28,288 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:59:28', 'Args': {}, 'Data': {}}
+2025-02-18 17:59:28,288 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:28] "GET / HTTP/1.1" 200 -
+2025-02-18 17:59:29,787 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 17:59:29', 'Args': {}, 'Data': {}}
+2025-02-18 17:59:29,791 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:29] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 17:59:33,309 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/view_user', 'Time': '2025-02-18 17:59:33', 'Args': {}, 'Data': {'meter_id': '111-000-000'}}
+2025-02-18 17:59:33,327 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "[35m[1mPOST /view_user HTTP/1.1[0m" 500 -
+2025-02-18 17:59:33,416 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "GET /view_user?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-02-18 17:59:33,617 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "GET /view_user?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-02-18 17:59:33,692 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "GET /view_user?__debugger__=yes&cmd=resource&f=console.png&s=c55jtQWRoSK2PJL9Xyl0 HTTP/1.1" 200 -
+2025-02-18 17:59:33,717 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "GET /view_user?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-02-18 17:59:33,823 - INFO - 127.0.0.1 - - [18/Feb/2025 17:59:33] "[36mGET /view_user?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 18:00:36,675 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 18:00:36,735 - INFO -  * Restarting with stat
+2025-02-18 18:00:37,163 - WARNING -  * Debugger is active!
+2025-02-18 18:00:37,163 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:00:39,710 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 18:00:39,710 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 18:00:39,711 - INFO -  * Restarting with stat
+2025-02-18 18:00:40,133 - WARNING -  * Debugger is active!
+2025-02-18 18:00:40,133 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:00:41,556 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:00:41', 'Args': {}, 'Data': {}}
+2025-02-18 18:00:41,560 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:41] "GET / HTTP/1.1" 200 -
+2025-02-18 18:00:45,137 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:00:45', 'Args': {}, 'Data': {}}
+2025-02-18 18:00:45,142 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:45] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:00:47,357 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/view_user', 'Time': '2025-02-18 18:00:47', 'Args': {}, 'Data': {'meter_id': '111-000-000'}}
+2025-02-18 18:00:47,363 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:47] "[35m[1mPOST /view_user HTTP/1.1[0m" 500 -
+2025-02-18 18:00:47,429 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:47] "[36mGET /view_user?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-18 18:00:47,569 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:47] "[36mGET /view_user?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-18 18:00:47,630 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:47] "[36mGET /view_user?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 18:00:47,631 - INFO - 127.0.0.1 - - [18/Feb/2025 18:00:47] "GET /view_user?__debugger__=yes&cmd=resource&f=console.png&s=xaonl0w2sioUUjc7dJr3 HTTP/1.1" 200 -
+2025-02-18 18:01:17,917 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 18:01:17,983 - INFO -  * Restarting with stat
+2025-02-18 18:02:36,855 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 18:02:36,856 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 18:02:36,856 - INFO -  * Restarting with stat
+2025-02-18 18:02:37,302 - WARNING -  * Debugger is active!
+2025-02-18 18:02:37,303 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 18:02:39,848 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:02:39', 'Args': {}, 'Data': {}}
+2025-02-18 18:02:39,851 - INFO - 127.0.0.1 - - [18/Feb/2025 18:02:39] "GET / HTTP/1.1" 200 -
+2025-02-18 18:02:41,288 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 18:02:41', 'Args': {}, 'Data': {}}
+2025-02-18 18:02:41,292 - INFO - 127.0.0.1 - - [18/Feb/2025 18:02:41] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 18:02:43,520 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/view_user', 'Time': '2025-02-18 18:02:43', 'Args': {}, 'Data': {'meter_id': '111-000-000'}}
+2025-02-18 18:02:43,522 - INFO - 127.0.0.1 - - [18/Feb/2025 18:02:43] "POST /view_user HTTP/1.1" 200 -
+2025-02-18 18:02:47,479 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 18:02:47', 'Args': {}, 'Data': {}}
+2025-02-18 18:02:47,480 - INFO - 127.0.0.1 - - [18/Feb/2025 18:02:47] "GET / HTTP/1.1" 200 -
+2025-02-18 18:02:51,340 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 18:02:51,401 - INFO -  * Restarting with stat
+2025-02-18 18:02:51,822 - WARNING -  * Debugger is active!
+2025-02-18 18:02:51,822 - INFO -  * Debugger PIN: 260-944-658

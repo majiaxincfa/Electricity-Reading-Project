@@ -149,7 +149,7 @@ maintenance_thread = threading.Thread(target=scheduled_task, daemon=True)
 maintenance_thread.start()
 
 @app.route('/')
-def index1():
+def index():
     """Main Page"""
     return render_template('index1.html')
 
@@ -294,20 +294,21 @@ def register():
         user_dict = user_data.iloc[0].to_dict()
         return render_template('register_success.html', user=user_dict)
 
-@app.route('/view_user1', methods=['GET', 'POST'])
-def view_user1():
+@app.route('/view_user', methods=['GET', 'POST'])
+def view_user():
     global users
     if request.method == 'GET':
-        return render_template_string('view_user1.html')
+        return render_template('view_user1.html')
 
     if request.method == 'POST':
-        meter_id = request.form.get['meter_id',''].strip()
+        meter_id = request.form.get('meter_id', '').strip()
         user = users[users["meter_id"] == meter_id].to_dict(orient="records")  # **转换为字典列表**
         if user:
+            user_dict = user[0]
             return render_template('view_user1.html',
                                    user_info=user_dict)
         else:
-            return render_template_string('view_user1.html',
+            return render_template('view_user1.html',
                                    not_found=True,
                                    meter_id=meter_id)
 
