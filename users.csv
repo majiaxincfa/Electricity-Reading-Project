@@ -6,3 +6,4 @@ username,meter_id,dwelling_type,region,area,community,unit,floor,email,tel,readi
 1,874377898,1-room / 2-room,Central,1,1,1,1,11111111@gmail.com,11,222,2025-02-16 00:00:00
 Jiaxin,123-456-789,3-room,Central,Bishan,Greenfield Estate,#05-123,5,jiaxin@example.com,80900378,12410,2025-02-18 00:00:00
 Haixin,987-654-321,3-room,East,Outram,Greenfield Estate,#03-123,5,haixin@example.com,80901263,1280,2025-02-18 00:00:00
+zhangjing,987-654-320,3-room,West,Outram,Greenfield Estate,#03-124,2,zhangjing@example.com,80901264,12355,2025-02-18 00:00:00
