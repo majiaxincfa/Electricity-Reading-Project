@@ -989,3 +989,97 @@
 2025-02-18 17:29:27,987 - INFO -  * Restarting with stat
 2025-02-18 17:29:28,408 - WARNING -  * Debugger is active!
 2025-02-18 17:29:28,409 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:33:41,541 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:33:41,542 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:33:41,542 - INFO -  * Restarting with stat
+2025-02-18 17:33:41,976 - WARNING -  * Debugger is active!
+2025-02-18 17:33:41,977 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:33:48,812 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:33:48,812 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:33:48,813 - INFO -  * Restarting with stat
+2025-02-18 17:33:49,248 - WARNING -  * Debugger is active!
+2025-02-18 17:33:49,249 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:34:01,523 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:34:01', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:01,527 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:01] "GET / HTTP/1.1" 200 -
+2025-02-18 17:34:04,106 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:34:04', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:04,109 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:04] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:34:06,256 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:34:06', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:06,256 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:06] "GET / HTTP/1.1" 200 -
+2025-02-18 17:34:07,762 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:34:07', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:07,763 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:07] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:34:13,472 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:34:13', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-007', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:34:13,487 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:13] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:34:14,762 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:34:14', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:14,763 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:14] "GET / HTTP/1.1" 200 -
+2025-02-18 17:34:19,141 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-18 17:34:19', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:19,141 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:19] "GET /register HTTP/1.1" 200 -
+2025-02-18 17:34:26,003 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-18 17:34:26', 'Args': {}, 'Data': {'username': 'C24', 'meter_id': '111-000-008', 'dwelling_type': '1-room / 2-room', 'region': 'Central', 'area': 'Singapore ORQ', 'community': 'gq3gtwe', 'unit': 'gs3225', 'floor': '5', 'email': 'C5243650@e.ntu.edu.sg', 'tel': '84523970'}}
+2025-02-18 17:34:26,009 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:26] "POST /register HTTP/1.1" 200 -
+2025-02-18 17:34:27,299 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:34:27', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:27,299 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:27] "GET / HTTP/1.1" 200 -
+2025-02-18 17:34:39,533 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-18 17:34:39', 'Args': {}, 'Data': {}}
+2025-02-18 17:34:39,533 - INFO - 127.0.0.1 - - [18/Feb/2025 17:34:39] "GET /view_user HTTP/1.1" 200 -
+2025-02-18 17:35:22,522 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:35:22,579 - INFO -  * Restarting with stat
+2025-02-18 17:35:23,014 - WARNING -  * Debugger is active!
+2025-02-18 17:35:23,014 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:30,982 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:35:31,057 - INFO -  * Restarting with stat
+2025-02-18 17:35:31,561 - WARNING -  * Debugger is active!
+2025-02-18 17:35:31,562 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:38,253 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:35:38,311 - INFO -  * Restarting with stat
+2025-02-18 17:35:38,727 - WARNING -  * Debugger is active!
+2025-02-18 17:35:38,727 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:42,501 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app0.py', reloading
+2025-02-18 17:35:42,562 - INFO -  * Restarting with stat
+2025-02-18 17:35:42,982 - WARNING -  * Debugger is active!
+2025-02-18 17:35:42,982 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:48,264 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app0.py', reloading
+2025-02-18 17:35:48,320 - INFO -  * Restarting with stat
+2025-02-18 17:35:48,741 - WARNING -  * Debugger is active!
+2025-02-18 17:35:48,742 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:49,491 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app0.py', reloading
+2025-02-18 17:35:49,557 - INFO -  * Restarting with stat
+2025-02-18 17:35:49,978 - WARNING -  * Debugger is active!
+2025-02-18 17:35:49,978 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:35:58,964 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:35:58,964 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:35:58,965 - INFO -  * Restarting with stat
+2025-02-18 17:35:59,394 - WARNING -  * Debugger is active!
+2025-02-18 17:35:59,394 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:36:09,410 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:36:09,410 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:36:09,411 - INFO -  * Restarting with stat
+2025-02-18 17:36:09,828 - WARNING -  * Debugger is active!
+2025-02-18 17:36:09,828 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:36:16,660 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:36:16', 'Args': {}, 'Data': {}}
+2025-02-18 17:36:16,678 - INFO - 127.0.0.1 - - [18/Feb/2025 17:36:16] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-02-18 17:36:16,929 - INFO - 127.0.0.1 - - [18/Feb/2025 17:36:16] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-18 17:36:16,946 - INFO - 127.0.0.1 - - [18/Feb/2025 17:36:16] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-18 17:36:17,120 - INFO - 127.0.0.1 - - [18/Feb/2025 17:36:17] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=4RvSSDDATaDI50VUFLI1 HTTP/1.1" 200 -
+2025-02-18 17:36:17,290 - INFO - 127.0.0.1 - - [18/Feb/2025 17:36:17] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 17:37:24,765 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:37:24,821 - INFO -  * Restarting with stat
+2025-02-18 17:37:25,240 - WARNING -  * Debugger is active!
+2025-02-18 17:37:25,240 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:37:30,520 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app1.py', reloading
+2025-02-18 17:37:30,576 - INFO -  * Restarting with stat
+2025-02-18 17:37:30,992 - WARNING -  * Debugger is active!
+2025-02-18 17:37:30,993 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:37:45,683 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-18 17:37:45,684 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-18 17:37:45,684 - INFO -  * Restarting with stat
+2025-02-18 17:37:46,142 - WARNING -  * Debugger is active!
+2025-02-18 17:37:46,142 - INFO -  * Debugger PIN: 260-944-658
+2025-02-18 17:37:50,260 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-18 17:37:50', 'Args': {}, 'Data': {}}
+2025-02-18 17:37:50,271 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-02-18 17:37:50,511 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-02-18 17:37:50,527 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-02-18 17:37:50,876 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-02-18 17:37:50,885 - INFO - 127.0.0.1 - - [18/Feb/2025 17:37:50] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=HxeDqfMEO1f8IbJ2V5I2 HTTP/1.1" 200 -

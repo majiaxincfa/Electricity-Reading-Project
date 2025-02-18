@@ -488,17 +488,17 @@ def view_user():
     """
     if request.method == 'GET':
         # 返回单独的HTML页面
-        return render_template('view_user.html')
+        return render_template('view_user1.html')
     else:
         meter_id = request.form.get('meter_id', '').strip()
         user_rec = users[users["meter_id"] == meter_id]
         if user_rec.empty:
-            return render_template('view_user.html',
+            return render_template('view_user1.html',
                                    not_found=True,
                                    meter_id=meter_id)
         else:
             user_dict = user_rec.iloc[0].to_dict()
-            return render_template('view_user.html',
+            return render_template('view_user1.html',
                                    user_info=user_dict)
 
 ############################################################
