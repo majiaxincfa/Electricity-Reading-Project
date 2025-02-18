@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Management System</title>
+    <title>Meter Management System - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Power Management System</h1>
+<body class="container py-3">
+    <h1>欢迎来到电表管理系统</h1>
+    <hr>
+    <p>请选择操作：</p>
     <ul>
-        <li><a href="/register_form">Register an Account</a></li>
-        <li><a href="/meter_reading_form">Submit Meter Readings</a></li>
-        <li><a href="/query_usage_form">Query Electricity Usage Records</a></li>
+        <li><a href="{{ url_for('register') }}">注册新用户</a></li>
+        <li><a href="{{ url_for('meter_reading') }}">电表读数</a></li>
+        <li><a href="{{ url_for('query_usage') }}">查询用电量</a></li>
+        <li><a href="{{ url_for('view_user') }}">查看用户信息</a></li>
     </ul>
 </body>
 </html>

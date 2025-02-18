@@ -2,20 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register Account</title>
+    <title>注册新用户</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Register Account</h1>
-    <form action="/register" method="post">
-        Account ID: <input type="text" name="meter_id" required><br>
-        Name: <input type="text" name="name" required><br>
-        Area: 
-        <select name="area">
-            <option value="Downtown">Downtown</option>
-            <option value="Suburbs">Suburbs</option>
-            <option value="Industrial">Industrial</option>
-        </select><br>
-        <input type="submit" value="Register">
+<body class="container py-3">
+    <h2>注册新用户</h2>
+    <form action="{{ url_for('register') }}" method="POST" class="row g-3">
+        <div class="col-md-6">
+            <label for="username" class="form-label">用户名 (Username):</label>
+            <input type="text" class="form-control" name="username" required placeholder="e.g. John Doe">
+        </div>
+
+        <div class="col-md-6">
+            <label for="meter_id" class="form-label">Meter ID (格式999-999-999):</label>
+            <input type="text" class="form-control" name="meter_id" required placeholder="e.g. 123-456-789">
+        </div>
+
+        <div class="col-md-6">
+            <label for="dwelling_type" class="form-label">Dwelling Type:</label>
+            <select class="form-select" name="dwelling_type" required>
+                {% for item in dwelling_types %}
+                <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="region" class="form-label">Region:</label>
+            <select class="form-select" name="region" required>
+                {% for r in regions %}
+                <option value="{{ r }}">{{ r }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="area" class="form-label">Area (示例: Bishan):</label>
+            <input type="text" class="form-control" name="area" required placeholder="Bishan">
+        </div>
+
+        <div class="col-md-6">
+            <label for="community" class="form-label">Community:</label>
+            <input type="text" class="form-control" name="community" required placeholder="e.g. Greenfield Estate">
+        </div>
+
+        <div class="col-md-6">
+            <label for="unit" class="form-label">Unit:</label>
+            <input type="text" class="form-control" name="unit" required placeholder="e.g. #05-123">
+        </div>
+
+        <div class="col-md-6">
+            <label for="floor" class="form-label">Floor:</label>
+            <input type="text" class="form-control" name="floor" required placeholder="e.g. 5">
+        </div>
+
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" name="email" required placeholder="john@example.com">
+        </div>
+
+        <div class="col-md-6">
+            <label for="tel" class="form-label">Phone:</label>
+            <input type="tel" class="form-control" name="tel" required placeholder="80901234">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">注册</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">返回首页</a>
+        </div>
     </form>
 </body>
 </html>
