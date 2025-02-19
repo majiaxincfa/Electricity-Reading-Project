@@ -250,7 +250,7 @@ def query_usage():
 
     now = datetime.now()
     
-    if time_range == 'today':
+    if time_range == 'yesterday':
         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         end_date = now
     elif time_range == 'last_week':
@@ -279,10 +279,34 @@ def query_usage():
     df_range.sort_values(by='time', inplace=True)
     df_range['reading'] = pd.to_numeric(df_range['reading'], errors='coerce').fillna(0)
     df_range['usage'] = df_range['reading'].diff().fillna(0)
+    
+    #删除第一根柱子
+    df_range = df_range.iloc[1:]
 
-    df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
-    x_data = df_range['time_str'].tolist()
-    y_data = df_range['usage'].tolist()
+    #当last week 和 last month时，只查询当天使用电量
+    if time_range in ['last_week', 'last_month']:
+        # 提取日期部分
+        df_range['date'] = df_range['time'].dt.date  
+        
+        # 按日期求和
+        df_daily = df_range.groupby('date', as_index=False)['usage'].sum()
+        
+        # 更新 x_data 和 y_data
+        x_data = df_daily['date'].astype(str).tolist()  # 转换为字符串以显示在 x 轴
+        y_data = df_daily['usage'].tolist()
+    else:
+        df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
+        x_data = df_range['time_str'].tolist()
+        y_data = df_range['usage'].tolist()
+
+
+
+
+
+    #%H:%M删除
+    #df_range['time_str'] = df_range['time'].dt.strftime('%Y-%m-%d %H:%M')
+    #x_data = df_range['time_str'].tolist()
+    #y_data = df_range['usage'].tolist()
 
     total_usage = sum(y_data)
 
