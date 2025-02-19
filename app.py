@@ -71,18 +71,6 @@ regions = ["Central", "East", "West", "North","South"]
 METER_CSV_PATH = 'meter_id.csv'
 LOCAL_DB_FILE = "local_db.csv"
 
-# Function to save meter_id, time, and reading to a local CSV file as DataFrame
-def generate_unique_meter_id():
-    while True:
-        # 生成 9 位随机字符串作为新 meter_id
-        new_meter_id = str(random.randint(100000000, 999999999))  
-
-        # 检查 `meter_id` 是否已存在于 users DataFrame
-        if new_meter_id not in users["meter_id"].astype(str).values:
-            return new_meter_id
-
-
-
 #初始化临时dataframe
 
 data_columns = ["meter_id", "time", "reading"]
@@ -178,7 +166,7 @@ maintenance_thread.start()
 @app.route('/')
 def index():
     """Main Page"""
-    return render_template('index1.html')
+    return render_template('index.html')
 
 
 @app.route('/meterreading', methods=['GET','POST'])
@@ -228,93 +216,101 @@ def meter_reading():
         # 让用户知道 `reading` 已被正确存储
         return jsonify({"status": "success", "message": f"New reading saved: {meter_id}, {formatted_time}, {reading}"}), 201
 
-@app.route('/query_usage', methods=['GET'])
+import matplotlib.pyplot as plt
+import io
+import base64
+from flask import Flask, render_template, request, jsonify
+import pandas as pd
+from datetime import datetime, timedelta
+
+LOCAL_DB_FILE = "local_db.csv"
+DAILY_USAGE_FILE = "daily_usage.csv"
+
+@app.route('/query_usage', methods=['GET', 'POST'])
 def query_usage():
     """
-    查询指定用户在当日/当周/当月/上月 或自定义区间的用电量。
-    生成简单柱状图可视化。
+    查询指定时间段的用电量，并可视化为柱状图。
+    支持从 `local_db.csv` 获取当天数据，`daily_usage.csv` 获取历史数据。
     """
-    global local_db, users
+    global users
+
     if request.method == 'GET':
         return render_template('query_usage.html')
-    else:
+
+    elif request.method == 'POST':
         meter_id = request.form.get('meter_id', '').strip()
-        query_type = request.form.get('query_type', '')
-        custom_start = request.form.get('start_time', '')
-        custom_end = request.form.get('end_time', '')
+        start_time = request.form.get('start_time', '').strip()
+        end_time = request.form.get('end_time', '').strip()
 
         if meter_id not in users["meter_id"].values:
             return render_template('query_usage.html',
                                    result=f"Meter ID {meter_id} not registered yet!")
 
-        now = datetime.now()
-        usage_result = 0.0
-        usage_details = ""
-        usage_period_labels = []
-        usage_values = []
+        try:
+            start_dt = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
+            end_dt = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
+        except ValueError:
+            return render_template('query_usage.html', result="Invalid date format!")
 
-        if query_type == 'today':
-            start_dt = datetime(now.year, now.month, now.day, 0, 0, 0)
-            end_dt = now
-            usage_result = calculate_usage(meter_id, start_dt, end_dt)
-            usage_details = f"Today({start_dt.strftime('%Y-%m-%d')})Electricity Consumption: {usage_result:.2f} kWh"
-            usage_period_labels.append("Today")
-            usage_values.append(usage_result)
+        if end_dt < start_dt:
+            return render_template('query_usage.html', result="End time cannot be earlier than start time!")
 
-        elif query_type == 'this_week':
-            weekday = now.weekday()  # 周一=0
-            monday = now - timedelta(days=weekday)
-            start_dt = datetime(monday.year, monday.month, monday.day, 0, 0, 0)
-            end_dt = now
-            usage_result = calculate_usage(meter_id, start_dt, end_dt)
-            usage_details = f"This week(from {start_dt.strftime('%Y-%m-%d')} to now)Electricity Consumption: {usage_result:.2f} kWh"
-            usage_period_labels.append("This Week")
-            usage_values.append(usage_result)
+        # 读取当天数据
+        try:
+            local_db = pd.read_csv(LOCAL_DB_FILE, dtype={"meter_id": str})
+            local_db["time"] = pd.to_datetime(local_db["time"])
+        except FileNotFoundError:
+            local_db = pd.DataFrame(columns=["meter_id", "time", "reading"])
 
-        elif query_type == 'this_month':
-            start_dt = datetime(now.year, now.month, 1, 0, 0, 0)
-            end_dt = now
-            usage_result = calculate_usage(meter_id, start_dt, end_dt)
-            usage_details = f"This month (From {start_dt.strftime('%Y-%m-%d')} to now)Electricity Consumption: {usage_result:.2f} kWh"
-            usage_period_labels.append("This Month")
-            usage_values.append(usage_result)
+        # 读取历史数据
+        try:
+            daily_usage = pd.read_csv(DAILY_USAGE_FILE, dtype={"meter_id": str})
+            daily_usage["date"] = pd.to_datetime(daily_usage["date"])
+        except FileNotFoundError:
+            daily_usage = pd.DataFrame(columns=["meter_id", "date", "reading"])
 
-        elif query_type == 'last_month':
-            first_day_last_month = (now.replace(day=1) - timedelta(days=1)).replace(day=1)
-            year_lm = first_day_last_month.year
-            month_lm = first_day_last_month.month
-            start_dt = datetime(year_lm, month_lm, 1, 0, 0, 0)
-            next_month_first = (start_dt.replace(day=28) + timedelta(days=4)).replace(day=1)
-            end_dt = next_month_first - timedelta(seconds=1)
-            usage_result = calculate_usage(meter_id, start_dt, end_dt)
-            usage_details = (f"Last Month({start_dt.strftime('%Y-%m-%d')} - "
-                             f"{end_dt.strftime('%Y-%m-%d')})Electricity Consumption: {usage_result:.2f} kWh")
-            usage_period_labels.append("Last Month")
-            usage_values.append(usage_result)
+        # 筛选符合时间范围的数据
+        local_filtered = local_db[(local_db["meter_id"] == meter_id) &
+                                  (local_db["time"] >= start_dt) &
+                                  (local_db["time"] <= end_dt)]
+        
+        daily_filtered = daily_usage[(daily_usage["meter_id"] == meter_id) &
+                                     (daily_usage["date"] >= start_dt) &
+                                     (daily_usage["date"] <= end_dt)]
 
-        elif query_type == 'custom' and custom_start and custom_end:
-            try:
-                start_dt = datetime.strptime(custom_start, '%Y-%m-%dT%H:%M')
-                end_dt = datetime.strptime(custom_end, '%Y-%m-%dT%H:%M')
-                if end_dt < start_dt:
-                    return render_template('query_usage.html', result="End time cannot be earlier than the start time!")
-                usage_result = calculate_usage(meter_id, start_dt, end_dt)
-                usage_details = (f"custom field({start_dt.strftime('%Y-%m-%d %H:%M')} - "
-                                 f"{end_dt.strftime('%Y-%m-%d %H:%M')})Electricity Consumption: {usage_result:.2f} kWh")
-                usage_period_labels.append("Custom Range")
-                usage_values.append(usage_result)
-            except ValueError:
-                return render_template('query_usage.html', result="Time format is incorrect, please try again!")
-        else:
-            usage_details = "Select or enter a correct search mode or period."
+        # 统一时间格式
+        local_filtered["time"] = local_filtered["time"].dt.strftime('%Y-%m-%d %H:%M:%S')
+        daily_filtered["date"] = daily_filtered["date"].dt.strftime('%Y-%m-%d %H:%M:%S')
 
-        chart_data = None
-        if usage_values:
-            chart_data = generate_usage_plot(usage_period_labels, usage_values)
+        # 合并当天数据和历史数据
+        combined_data = pd.concat([local_filtered.rename(columns={"time": "datetime"}),
+                                   daily_filtered.rename(columns={"date": "datetime"})],
+                                  ignore_index=True)
+        
+        if combined_data.empty:
+            return render_template('query_usage.html', result="No data found for the given period.")
+
+        # 按时间排序
+        combined_data["datetime"] = pd.to_datetime(combined_data["datetime"])
+        combined_data.sort_values("datetime", inplace=True)
+
+        # 生成柱状图
+        img = io.BytesIO()
+        plt.figure(figsize=(10, 5))
+        plt.bar(combined_data["datetime"].dt.strftime('%Y-%m-%d %H:%M'),
+                combined_data["reading"].astype(float), color='blue')
+        plt.xlabel("Time")
+        plt.ylabel("Meter Reading (kWh)")
+        plt.xticks(rotation=45)
+        plt.title(f"Electricity Usage for {meter_id}")
+        plt.tight_layout()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        chart_url = base64.b64encode(img.getvalue()).decode()
 
         return render_template('query_usage.html',
-                               result=usage_details,
-                               chart_data=chart_data)
+                               result="Query completed successfully!",
+                               chart_url=chart_url)
 
 
 # -------------user_management start----------------
@@ -344,7 +340,7 @@ def save_users_to_csv():
 def register():
     global users
     if request.method == 'GET':
-        return render_template('register1.html', dwelling_types=dwelling_types, regions=regions)
+        return render_template('register.html', dwelling_types=dwelling_types, regions=regions)
 
     if request.method == 'POST':
         timestamp = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
@@ -377,17 +373,17 @@ def register():
 def view_user():
     global users
     if request.method == 'GET':
-        return render_template('view_user1.html')
+        return render_template('view_user.html')
 
     if request.method == 'POST':
         meter_id = request.form.get('meter_id', '').strip()
         user = users[users["meter_id"] == meter_id].to_dict(orient="records")  # **转换为字典列表**
         if user:
             user_dict = user[0]
-            return render_template('view_user1.html',
+            return render_template('view_user.html',
                                    user_info=user_dict)
         else:
-            return render_template('view_user1.html',
+            return render_template('view_user.html',
                                    not_found=True,
                                    meter_id=meter_id)
 
