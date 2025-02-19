@@ -229,88 +229,133 @@ DAILY_USAGE_FILE = "daily_usage.csv"
 @app.route('/query_usage', methods=['GET', 'POST'])
 def query_usage():
     """
-    查询指定时间段的用电量，并可视化为柱状图。
-    支持从 `local_db.csv` 获取当天数据，`daily_usage.csv` 获取历史数据。
+    查询当天，上一周，上一个月或者指定时间段的用电量（差值），
+    并可视化为柱状图，横轴时间点，纵轴用电量
+    支持从 `local_db.csv` 获取间隔半小时的数据
     """
-    global users
-
     if request.method == 'GET':
-        return render_template('query_usage.html')
+        # 第一次进入，显示查询表单
+        return render_template('query_usage.html', 
+                               plot_url=None, 
+                               usage_data=None)
+    
+    # POST 请求，处理查询逻辑
+    meter_id = request.form.get('meter_id', '').strip()
+    time_range = request.form.get('time_range', 'today')
+    start_date_str = request.form.get('start_date', '')
+    end_date_str = request.form.get('end_date', '')
 
-    elif request.method == 'POST':
-        meter_id = request.form.get('meter_id', '').strip()
-        start_time = request.form.get('start_time', '').strip()
-        end_time = request.form.get('end_time', '').strip()
+    if not meter_id:
+        return render_template('query_usage.html', 
+                               error="Meter ID is required!", 
+                               plot_url=None, 
+                               usage_data=None)
+    
+    # 读取 half-hourly 原始数据
+    df = pd.read_csv(LOCAL_DB_FILE)
+    # 确保 time 转成 datetime
+    df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d %H:%M:%S', errors='coerce')
+    df = df.dropna(subset=['time'])  # 如果有无法解析的时间就丢弃
+    
+    # 过滤当前 meter_id
+    df = df[df['meter_id'] == meter_id]
+    if df.empty:
+        return render_template('query_usage.html', 
+                               error=f"No data found for meter_id: {meter_id}", 
+                               plot_url=None, 
+                               usage_data=None)
 
-        if meter_id not in users["meter_id"].values:
-            return render_template('query_usage.html',
-                                   result=f"Meter ID {meter_id} not registered yet!")
-
+    # 根据选择的时间范围计算 start_date, end_date
+    now = datetime.now()
+    
+    if time_range == 'today':
+        start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end_date = now
+    elif time_range == 'last_week':
+        end_date = now
+        start_date = now - timedelta(days=7)
+    elif time_range == 'last_month':
+        end_date = now
+        start_date = now - timedelta(days=30)
+    else:
+        # custom
         try:
-            start_dt = datetime.strptime(start_time, '%Y-%m-%dT%H:%M')
-            end_dt = datetime.strptime(end_time, '%Y-%m-%dT%H:%M')
+            if start_date_str and end_date_str:
+                start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+                end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+                # 若要包含当天23:59，可以 + timedelta
+                end_date = end_date.replace(hour=23, minute=59, second=59)
+            else:
+                return render_template('query_usage.html', 
+                                       error="Please select both start and end date for custom range.", 
+                                       plot_url=None, 
+                                       usage_data=None)
         except ValueError:
-            return render_template('query_usage.html', result="Invalid date format!")
+            return render_template('query_usage.html', 
+                                   error="Invalid date format. Please use YYYY-MM-DD.", 
+                                   plot_url=None, 
+                                   usage_data=None)
 
-        if end_dt < start_dt:
-            return render_template('query_usage.html', result="End time cannot be earlier than start time!")
+    # 过滤时间范围
+    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+    df_range = df.loc[mask].copy()
 
-        # 读取当天数据
-        try:
-            local_db = pd.read_csv(LOCAL_DB_FILE, dtype={"meter_id": str})
-            local_db["time"] = pd.to_datetime(local_db["time"])
-        except FileNotFoundError:
-            local_db = pd.DataFrame(columns=["meter_id", "time", "reading"])
+    if df_range.empty:
+        return render_template('query_usage.html', 
+                               error="No meter readings found in the selected date range.", 
+                               plot_url=None, 
+                               usage_data=None)
 
-        # 读取历史数据
-        try:
-            daily_usage = pd.read_csv(DAILY_USAGE_FILE, dtype={"meter_id": str})
-            daily_usage["date"] = pd.to_datetime(daily_usage["date"])
-        except FileNotFoundError:
-            daily_usage = pd.DataFrame(columns=["meter_id", "date", "reading"])
+    # 按时间排序
+    df_range.sort_values(by='time', inplace=True)
 
-        # 筛选符合时间范围的数据
-        local_filtered = local_db[(local_db["meter_id"] == meter_id) &
-                                  (local_db["time"] >= start_dt) &
-                                  (local_db["time"] <= end_dt)]
-        
-        daily_filtered = daily_usage[(daily_usage["meter_id"] == meter_id) &
-                                     (daily_usage["date"] >= start_dt) &
-                                     (daily_usage["date"] <= end_dt)]
+    # 转成数值
+    df_range['reading'] = pd.to_numeric(df_range['reading'], errors='coerce').fillna(0)
 
-        # 统一时间格式
-        local_filtered["time"] = local_filtered["time"].dt.strftime('%Y-%m-%d %H:%M:%S')
-        daily_filtered["date"] = daily_filtered["date"].dt.strftime('%Y-%m-%d %H:%M:%S')
+    # 计算每个半小时的用电量(差值)
+    # usage[i] = reading[i] - reading[i-1]
+    df_range['usage'] = df_range['reading'].diff()
+    # 第一个差值为 NaN，可以用0 或者直接丢弃
+    df_range['usage'] = df_range['usage'].fillna(0)
+    
+    # 如果出现回退读数或异常，diff 可能是负值，根据业务需求，可把负值视为 0 或者保持原状
+    # df_range.loc[df_range['usage'] < 0, 'usage'] = 0
 
-        # 合并当天数据和历史数据
-        combined_data = pd.concat([local_filtered.rename(columns={"time": "datetime"}),
-                                   daily_filtered.rename(columns={"date": "datetime"})],
-                                  ignore_index=True)
-        
-        if combined_data.empty:
-            return render_template('query_usage.html', result="No data found for the given period.")
+    # 为可视化做准备
+    # X轴：time(字符串)，Y轴：usage
+    df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
+    x_data = df_range['time_str'].tolist()
+    y_data = df_range['usage'].tolist()
 
-        # 按时间排序
-        combined_data["datetime"] = pd.to_datetime(combined_data["datetime"])
-        combined_data.sort_values("datetime", inplace=True)
+    # 绘图
+    fig, ax = plt.subplots(figsize=(10, 4))
+    ax.bar(x_data, y_data, color='royalblue')
+    ax.set_title(f"Electricity Usage for Meter {meter_id}")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Usage (kWh)")
+    
+    # x轴刻度可能会比较密集，可以根据需要旋转
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
 
-        # 生成柱状图
-        img = io.BytesIO()
-        plt.figure(figsize=(10, 5))
-        plt.bar(combined_data["datetime"].dt.strftime('%Y-%m-%d %H:%M'),
-                combined_data["reading"].astype(float), color='blue')
-        plt.xlabel("Time")
-        plt.ylabel("Meter Reading (kWh)")
-        plt.xticks(rotation=45)
-        plt.title(f"Electricity Usage for {meter_id}")
-        plt.tight_layout()
-        plt.savefig(img, format='png')
-        img.seek(0)
-        chart_url = base64.b64encode(img.getvalue()).decode()
+    # 将图表转换成 base64
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png")
+    buf.seek(0)
+    encoded = base64.b64encode(buf.getvalue()).decode('utf-8')
+    plot_url = "data:image/png;base64," + encoded
 
-        return render_template('query_usage.html',
-                               result="Query completed successfully!",
-                               chart_url=chart_url)
+    # 清理图表以防止后续重复
+    plt.close(fig)
+
+    # usage_data: 准备一个表格或简单列表，用来在 html 里显示
+    usage_data = df_range[['time_str','usage']].values.tolist()
+    
+    return render_template('query_usage.html', 
+                           error=None,
+                           plot_url=plot_url,
+                           usage_data=usage_data)
+
 
 
 # -------------user_management start----------------

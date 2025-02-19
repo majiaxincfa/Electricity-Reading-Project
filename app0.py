@@ -198,30 +198,6 @@ def daily_maintenance_job():
 maintenance_thread = threading.Thread(target=daily_maintenance_job, daemon=True)
 maintenance_thread.start()
 
-# def calculate_usage(meter_id, start_dt, end_dt):
-#     """
-#     计算某个meter在指定时间范围内的用电量。
-#     假设 reading 为累计读数，区间用电量 = (最后一次读数 - 最早一次读数)。
-#     """
-#     meter_df = local_db[local_db["meter_id"] == str(meter_id)].copy()
-#     if meter_df.empty:
-#         return 0.0
-
-#     # meter_df["dt"] = meter_df["time"].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'))
-#     meter_df["dt"] = pd.to_datetime(meter_df["time"], format='%Y-%m-%d %H:%M:%S', errors='coerce')
-
-#     # 过滤出时间范围
-#     mask = (meter_df["dt"] >= start_dt) & (meter_df["dt"] <= end_dt)
-#     meter_df = meter_df[mask].sort_values(by="dt")
-#     if meter_df.empty:
-#         return 0.0
-
-#     # usage = difference between last reading and first reading
-#     first_reading = float(meter_df.iloc[0]["reading"])
-#     last_reading = float(meter_df.iloc[-1]["reading"])
-#     usage_kwh = last_reading - first_reading
-#     return max(usage_kwh, 0.0)
-
 def calculate_usage(meter_id, start_dt, end_dt):
     """
     计算某个meter在指定时间范围内的用电量。
@@ -229,35 +205,23 @@ def calculate_usage(meter_id, start_dt, end_dt):
     """
     meter_df = local_db[local_db["meter_id"] == str(meter_id)].copy()
     if meter_df.empty:
-        print("❌ 该 meter_id 无数据！")
         return 0.0
 
-    # 确保时间格式正确
+    # meter_df["dt"] = meter_df["time"].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'))
     meter_df["dt"] = pd.to_datetime(meter_df["time"], format='%Y-%m-%d %H:%M:%S', errors='coerce')
 
-    # 检查是否有 NaT 时间（格式错误）
-    if meter_df["dt"].isna().sum() > 0:
-        print("⚠️ 警告：时间格式解析失败，以下数据 time 无法转换！")
-        print(meter_df[meter_df["dt"].isna()])
-        return 0.0
-
     # 过滤出时间范围
-    print("调试: 过滤前行数=", len(meter_df))
-    mask = (meter_df["dt"] >= start_dt) & (meter_df["dt"] < end_dt + timedelta(seconds=1))
+    mask = (meter_df["dt"] >= start_dt) & (meter_df["dt"] <= end_dt)
     meter_df = meter_df[mask].sort_values(by="dt")
-    print("调试: 过滤后行数=", len(meter_df))
-    print(meter_df[["dt", "reading"]])
-
     if meter_df.empty:
-        print("❌ 该时间段内无数据！")
         return 0.0
 
     # usage = difference between last reading and first reading
     first_reading = float(meter_df.iloc[0]["reading"])
     last_reading = float(meter_df.iloc[-1]["reading"])
     usage_kwh = last_reading - first_reading
-
     return max(usage_kwh, 0.0)
+
 
 def generate_usage_plot(x_labels, usage_values):
     """
