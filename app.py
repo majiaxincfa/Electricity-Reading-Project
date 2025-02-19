@@ -133,6 +133,16 @@ def store_data_in_df(data):
     # 追加数据到 data_store
     data_store = pd.concat([data_store, data], ignore_index=True)
 
+    if os.path.exists('local_db.csv'):
+        # Read existing CSV file
+        d = pd.read_csv('local_db.csv')
+        # Append new data
+        data_new = pd.concat([d, data_store], ignore_index=True)
+    else:
+        # Create new DataFrame if file doesn't exist
+        data_new =data_store
+
+    data_new .to_csv('local_db.csv', index=False)
     
     # 更新 users 里的 reading 值
     for index, row in data_store.iterrows():
@@ -147,12 +157,6 @@ def store_data_in_df(data):
     # **同步保存到 CSV**
     save_users_to_csv()
 
-    if os.path.exists(LOCAL_DB_FILE):
-        existing_data = pd.read_csv(LOCAL_DB_FILE)
-        data_new = pd.concat([existing_data, data_store], ignore_index=True)
-    else:
-        data_new = data_store
-    data_new.to_csv(LOCAL_DB_FILE, index=False)
 
     print("Data stored successfully!")
 
