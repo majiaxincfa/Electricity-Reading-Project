@@ -1410,3 +1410,6 @@
 2025-02-19 17:40:46,967 - INFO -  * Detected change in 'C:\\Users\\wyw\\Electricity-Reading-Project\\app.py', reloading
 2025-02-19 17:40:46,969 - INFO -  * Detected change in 'C:\\Users\\wyw\\Electricity-Reading-Project\\app.py', reloading
 2025-02-19 17:40:46,969 - INFO -  * Detected change in 'C:\\Users\\wyw\\Electricity-Reading-Project\\app.py', reloading
+2025-02-19 17:40:47,163 - INFO -  * Restarting with watchdog (windowsapi)
+2025-02-19 17:40:48,375 - WARNING -  * Debugger is active!
+2025-02-19 17:40:48,383 - INFO -  * Debugger PIN: 145-754-257
