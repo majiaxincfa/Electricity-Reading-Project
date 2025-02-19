@@ -84,8 +84,8 @@ def check_and_archive_on_startup():
 # 每天 00:00 - 00:59 进行数据归档
 def maintenance_scheduler():
     while True:
-        #current_time = datetime.now().strftime("%H:%M")
-        current_time = "01:00"
+        #current_time = "01:00"
+        current_time = datetime.now().strftime("%H:%M")
         if "00:00" <= current_time <= "00:59":
             print(" Midnight maintenance started...")
             archive_data()
