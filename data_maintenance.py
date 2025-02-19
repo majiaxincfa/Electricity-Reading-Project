@@ -14,7 +14,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 LOCAL_DB_FILE = os.path.join(current_dir, "local_db.csv")
 DAILY_USAGE_FILE = os.path.join(current_dir, "daily_usage.csv")
 
-# loas `local_db.csv`
+# load `local_db.csv`
 def load_data_store():
     try:
         return pd.read_csv(LOCAL_DB_FILE)
@@ -35,19 +35,20 @@ def calculate_daily_usage(data_store):
     if today_data.empty:
         print("No records found for today.")
         return
+    
     latest_today = today_data.sort_values("time").groupby("meter_id").last().reset_index()
-
-    # maintain `meter_id`、`date`、`reading`
-    latest_today = latest_today[["meter_id", "time", "reading"]]
+    latest_today["time"] = latest_today["time"].dt.strftime("%Y-%m-%d %H:%M:%S")
     latest_today.rename(columns={"time": "date"}, inplace=True)
 
     try:
-        daily_db = pd.read_csv(DAILY_USAGE_FILE)
+        daily_db = pd.read_csv(DAILY_USAGE_FILE, dtype={"date": str})
     except FileNotFoundError:
         daily_db = pd.DataFrame(columns=["meter_id", "date", "reading"])
-
-    # delete lod recording，and the add new recording
+    
+    # delete useless recording
     daily_db = daily_db[daily_db["date"] != today_str]
+    
+     # add new recording
     daily_db = pd.concat([daily_db, latest_today], ignore_index=True)
     daily_db.to_csv(DAILY_USAGE_FILE, index=False)
 
@@ -64,7 +65,6 @@ def archive_data():
     try:
         # daily_usage for calculation
         calculate_daily_usage(data_store)
-
         # clear data_store
         print(" Data store cleared after archiving.")
 
@@ -73,13 +73,9 @@ def archive_data():
 
 # Check for unarchived data at power-up and performs archiving
 def check_and_archive_on_startup():
-    data_store = load_data_store()
-    
-    if not data_store.empty:
-        print(" Startup check: Unarchived data found. Archiving now...")
-        archive_data()
-    else:
-        print(" Startup check: No unarchived data found.")
+    print(" System startup: Checking for unarchived data...")
+    archive_data()
+
 
 # archive from 00:00 to 00:59 every day
 def maintenance_scheduler():
@@ -103,7 +99,6 @@ def start_maintenance_thread():
 if __name__ == "__main__":
     print(" System startup: Checking for unarchived data...")
     check_and_archive_on_startup()  
-    
     start_maintenance_thread()
 
     while True:
