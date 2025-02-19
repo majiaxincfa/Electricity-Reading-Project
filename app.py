@@ -142,7 +142,7 @@ def store_data_in_df(data):
         # Create new DataFrame if file doesn't exist
         data_new =data_store
 
-    data_new .to_csv('local_db.csv', index=False)
+    #data_new.to_csv('local_db.csv', index=False)
     
     # 更新 users 里的 reading 值
     for index, row in data_store.iterrows():
