@@ -187,41 +187,7 @@ def meter_reading():
     global data_store
 
     if request.method == 'GET':
-        return """
-        <h2>Meter Reading System</h2>
-        <form id="meterForm">
-            <label>MeterID：</label>
-            <input type="text" id="meter_id" required>
-            <br>            
-            <label>Time：</label>
-            <input type="datetime-local" id="time" required>
-            <br>
-            <label>Meter reading (kWh)：</label>
-            <input type="number" id="reading" step="0.01" required>
-            <br><br>
-            <button type="submit">Submit</button>
-        </form>
-        <p><a href="/dashboard">Return to Dashboard</a></p> 
-
-        <script>
-        document.getElementById("meterForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            fetch("/meterreading", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    meter_id: document.getElementById("meter_id").value,
-        
-                    time: document.getElementById("time").value,
-                    reading: parseFloat(document.getElementById("reading").value)
-                })
-            })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error("Failure:", error));
-        });
-        </script>
-        """
+        return render_template('meter_reading.html')
     
     elif request.method == 'POST':
 
