@@ -226,46 +226,28 @@ from datetime import datetime, timedelta
 LOCAL_DB_FILE = "local_db.csv"
 DAILY_USAGE_FILE = "daily_usage.csv"
 
+import matplotlib.pyplot as plt
 @app.route('/query_usage', methods=['GET', 'POST'])
 def query_usage():
-    """
-    查询当天，上一周，上一个月或者指定时间段的用电量（差值），
-    并可视化为柱状图，横轴时间点，纵轴用电量
-    支持从 `local_db.csv` 获取间隔半小时的数据
-    """
     if request.method == 'GET':
-        # 第一次进入，显示查询表单
-        return render_template('query_usage.html', 
-                               plot_url=None, 
-                               usage_data=None)
+        return render_template('query_usage.html', plot_url=None, total_usage=None)
     
-    # POST 请求，处理查询逻辑
     meter_id = request.form.get('meter_id', '').strip()
     time_range = request.form.get('time_range', 'today')
     start_date_str = request.form.get('start_date', '')
     end_date_str = request.form.get('end_date', '')
 
     if not meter_id:
-        return render_template('query_usage.html', 
-                               error="Meter ID is required!", 
-                               plot_url=None, 
-                               usage_data=None)
+        return render_template('query_usage.html', error="Meter ID is required!", plot_url=None, total_usage=None)
     
-    # 读取 half-hourly 原始数据
     df = pd.read_csv(LOCAL_DB_FILE)
-    # 确保 time 转成 datetime
-    df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d %H:%M:%S', errors='coerce')
-    df = df.dropna(subset=['time'])  # 如果有无法解析的时间就丢弃
-    
-    # 过滤当前 meter_id
+    df['time'] = pd.to_datetime(df['time'], errors='coerce')
+    df = df.dropna(subset=['time'])
     df = df[df['meter_id'] == meter_id]
-    if df.empty:
-        return render_template('query_usage.html', 
-                               error=f"No data found for meter_id: {meter_id}", 
-                               plot_url=None, 
-                               usage_data=None)
 
-    # 根据选择的时间范围计算 start_date, end_date
+    if df.empty:
+        return render_template('query_usage.html', error=f"No data found for meter_id: {meter_id}", plot_url=None, total_usage=None)
+
     now = datetime.now()
     
     if time_range == 'today':
@@ -278,84 +260,148 @@ def query_usage():
         end_date = now
         start_date = now - timedelta(days=30)
     else:
-        # custom
         try:
             if start_date_str and end_date_str:
                 start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
                 end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
-                # 若要包含当天23:59，可以 + timedelta
                 end_date = end_date.replace(hour=23, minute=59, second=59)
             else:
-                return render_template('query_usage.html', 
-                                       error="Please select both start and end date for custom range.", 
-                                       plot_url=None, 
-                                       usage_data=None)
+                return render_template('query_usage.html', error="Please select both start and end date for custom range.", plot_url=None, total_usage=None)
         except ValueError:
-            return render_template('query_usage.html', 
-                                   error="Invalid date format. Please use YYYY-MM-DD.", 
-                                   plot_url=None, 
-                                   usage_data=None)
+            return render_template('query_usage.html', error="Invalid date format. Please use YYYY-MM-DD.", plot_url=None, total_usage=None)
 
-    # 过滤时间范围
     mask = (df['time'] >= start_date) & (df['time'] <= end_date)
     df_range = df.loc[mask].copy()
 
     if df_range.empty:
-        return render_template('query_usage.html', 
-                               error="No meter readings found in the selected date range.", 
-                               plot_url=None, 
-                               usage_data=None)
+        return render_template('query_usage.html', error="No meter readings found in the selected date range.", plot_url=None, total_usage=None)
 
-    # 按时间排序
     df_range.sort_values(by='time', inplace=True)
-
-    # 转成数值
     df_range['reading'] = pd.to_numeric(df_range['reading'], errors='coerce').fillna(0)
+    df_range['usage'] = df_range['reading'].diff().fillna(0)
 
-    # 计算每个半小时的用电量(差值)
-    # usage[i] = reading[i] - reading[i-1]
-    df_range['usage'] = df_range['reading'].diff()
-    # 第一个差值为 NaN，可以用0 或者直接丢弃
-    df_range['usage'] = df_range['usage'].fillna(0)
-    
-    # 如果出现回退读数或异常，diff 可能是负值，根据业务需求，可把负值视为 0 或者保持原状
-    # df_range.loc[df_range['usage'] < 0, 'usage'] = 0
-
-    # 为可视化做准备
-    # X轴：time(字符串)，Y轴：usage
     df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
     x_data = df_range['time_str'].tolist()
     y_data = df_range['usage'].tolist()
 
-    # 绘图
+    total_usage = sum(y_data)
+
     fig, ax = plt.subplots(figsize=(10, 4))
-    ax.bar(x_data, y_data, color='royalblue')
+    bars = ax.bar(x_data, y_data, color='royalblue')
+
+    # 只在非零柱子上标注数值
+    for bar in bars:
+        height = bar.get_height()
+        if height > 0:  # 只显示非零数值
+            ax.annotate(f'{height:.2f}', 
+                        xy=(bar.get_x() + bar.get_width() / 2, height), 
+                        xytext=(0, 5), 
+                        textcoords='offset points',
+                        ha='center', 
+                        fontsize=10, 
+                        color='black')
+
     ax.set_title(f"Electricity Usage for Meter {meter_id}")
     ax.set_xlabel("Time")
     ax.set_ylabel("Usage (kWh)")
-    
-    # x轴刻度可能会比较密集，可以根据需要旋转
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
-    # 将图表转换成 base64
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
     buf.seek(0)
     encoded = base64.b64encode(buf.getvalue()).decode('utf-8')
     plot_url = "data:image/png;base64," + encoded
-
-    # 清理图表以防止后续重复
     plt.close(fig)
 
-    # usage_data: 准备一个表格或简单列表，用来在 html 里显示
-    usage_data = df_range[['time_str','usage']].values.tolist()
-    
-    return render_template('query_usage.html', 
-                           error=None,
-                           plot_url=plot_url,
-                           usage_data=usage_data)
+    return render_template('query_usage.html', plot_url=plot_url, total_usage=total_usage)
 
+# @app.route('/query_usage', methods=['GET', 'POST'])
+# def query_usage():
+#     if request.method == 'GET':
+#         return render_template('query_usage.html', plot_url=None, total_usage=None)
+    
+#     meter_id = request.form.get('meter_id', '').strip()
+#     time_range = request.form.get('time_range', 'today')
+#     start_date_str = request.form.get('start_date', '')
+#     end_date_str = request.form.get('end_date', '')
+
+#     if not meter_id:
+#         return render_template('query_usage.html', error="Meter ID is required!", plot_url=None, total_usage=None)
+    
+#     df = pd.read_csv(LOCAL_DB_FILE)
+#     df['time'] = pd.to_datetime(df['time'], errors='coerce')
+#     df = df.dropna(subset=['time'])
+#     df = df[df['meter_id'] == meter_id]
+
+#     if df.empty:
+#         return render_template('query_usage.html', error=f"No data found for meter_id: {meter_id}", plot_url=None, total_usage=None)
+
+#     now = datetime.now()
+    
+#     if time_range == 'today':
+#         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
+#         end_date = now
+#     elif time_range == 'last_week':
+#         end_date = now
+#         start_date = now - timedelta(days=7)
+#     elif time_range == 'last_month':
+#         end_date = now
+#         start_date = now - timedelta(days=30)
+#     else:
+#         try:
+#             if start_date_str and end_date_str:
+#                 start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+#                 end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+#                 end_date = end_date.replace(hour=23, minute=59, second=59)
+#             else:
+#                 return render_template('query_usage.html', error="Please select both start and end date for custom range.", plot_url=None, total_usage=None)
+#         except ValueError:
+#             return render_template('query_usage.html', error="Invalid date format. Please use YYYY-MM-DD.", plot_url=None, total_usage=None)
+
+#     mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+#     df_range = df.loc[mask].copy()
+
+#     if df_range.empty:
+#         return render_template('query_usage.html', error="No meter readings found in the selected date range.", plot_url=None, total_usage=None)
+
+#     df_range.sort_values(by='time', inplace=True)
+#     df_range['reading'] = pd.to_numeric(df_range['reading'], errors='coerce').fillna(0)
+#     df_range['usage'] = df_range['reading'].diff().fillna(0)
+
+#     df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
+#     x_data = df_range['time_str'].tolist()
+#     y_data = df_range['usage'].tolist()
+
+#     total_usage = sum(y_data)
+
+#     fig, ax = plt.subplots(figsize=(10, 4))
+#     bars = ax.bar(x_data, y_data, color='royalblue')
+
+#     for bar in bars:
+#         height = bar.get_height()
+#         ax.annotate(f'{height:.2f}', 
+#                     xy=(bar.get_x() + bar.get_width() / 2, height), 
+#                     xytext=(0, 5), 
+#                     textcoords='offset points',
+#                     ha='center', 
+#                     fontsize=10, 
+#                     color='black')
+
+#     ax.set_title(f"Electricity Usage for Meter {meter_id}")
+#     ax.set_xlabel("Time")
+#     ax.set_ylabel("Usage (kWh)")
+#     plt.xticks(rotation=45, ha='right')
+#     plt.tight_layout()
+
+#     buf = io.BytesIO()
+#     fig.savefig(buf, format="png")
+#     buf.seek(0)
+#     encoded = base64.b64encode(buf.getvalue()).decode('utf-8')
+#     plot_url = "data:image/png;base64," + encoded
+#     plt.close(fig)
+
+#     return render_template('query_usage.html', plot_url=plot_url, total_usage=total_usage)
 
 
 # -------------user_management start----------------
