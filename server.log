@@ -1413,3 +1413,73 @@
 2025-02-19 17:40:47,163 - INFO -  * Restarting with watchdog (windowsapi)
 2025-02-19 17:40:48,375 - WARNING -  * Debugger is active!
 2025-02-19 17:40:48,383 - INFO -  * Debugger PIN: 145-754-257
+2025-02-19 13:43:16,943 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-19 13:43:16,944 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-19 13:43:16,944 - INFO -  * Restarting with stat
+2025-02-19 13:43:17,441 - WARNING -  * Debugger is active!
+2025-02-19 13:43:17,442 - INFO -  * Debugger PIN: 665-450-222
+2025-02-19 13:43:26,517 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:43:26', 'Args': {}, 'Data': {}}
+2025-02-19 13:43:26,522 - INFO - 127.0.0.1 - - [19/Feb/2025 13:43:26] "GET / HTTP/1.1" 200 -
+2025-02-19 13:43:26,824 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/favicon.ico', 'Time': '2025-02-19 13:43:26', 'Args': {}, 'Data': {}}
+2025-02-19 13:43:26,825 - INFO - 127.0.0.1 - - [19/Feb/2025 13:43:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-19 13:43:42,114 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-19 13:43:42', 'Args': {}, 'Data': {}}
+2025-02-19 13:43:42,117 - INFO - 127.0.0.1 - - [19/Feb/2025 13:43:42] "GET /register HTTP/1.1" 200 -
+2025-02-19 13:45:01,337 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/register', 'Time': '2025-02-19 13:45:01', 'Args': {}, 'Data': {'username': 'jiaxin', 'meter_id': '321-654-987', 'dwelling_type': '3-room', 'region': 'East', 'area': 'Bishan', 'community': 'Greenfield', 'unit': '#04-789', 'floor': '4', 'email': 'jaixin@example.com', 'tel': '80901234'}}
+2025-02-19 13:45:01,348 - INFO - 127.0.0.1 - - [19/Feb/2025 13:45:01] "POST /register HTTP/1.1" 200 -
+2025-02-19 13:45:11,982 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:45:11', 'Args': {}, 'Data': {}}
+2025-02-19 13:45:11,982 - INFO - 127.0.0.1 - - [19/Feb/2025 13:45:11] "GET / HTTP/1.1" 200 -
+2025-02-19 13:45:16,497 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/meterreading', 'Time': '2025-02-19 13:45:16', 'Args': {}, 'Data': {}}
+2025-02-19 13:45:16,499 - INFO - 127.0.0.1 - - [19/Feb/2025 13:45:16] "GET /meterreading HTTP/1.1" 200 -
+2025-02-19 13:45:59,721 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/meterreading', 'Time': '2025-02-19 13:45:59', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time': '2025-02-19T02:30', 'reading': 21000}}
+2025-02-19 13:45:59,727 - INFO - 127.0.0.1 - - [19/Feb/2025 13:45:59] "[35m[1mPOST /meterreading HTTP/1.1[0m" 201 -
+2025-02-19 13:47:26,609 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/meterreading', 'Time': '2025-02-19 13:47:26', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time': '2025-02-19T02:30', 'reading': 1234}}
+2025-02-19 13:47:26,610 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:26] "[35m[1mPOST /meterreading HTTP/1.1[0m" 201 -
+2025-02-19 13:47:30,091 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:47:30', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:30,092 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:30] "GET / HTTP/1.1" 200 -
+2025-02-19 13:47:33,022 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/view_user', 'Time': '2025-02-19 13:47:33', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:33,026 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:33] "GET /view_user HTTP/1.1" 200 -
+2025-02-19 13:47:36,040 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/view_user', 'Time': '2025-02-19 13:47:36', 'Args': {}, 'Data': {'meter_id': '987-654-320'}}
+2025-02-19 13:47:36,044 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:36] "POST /view_user HTTP/1.1" 200 -
+2025-02-19 13:47:38,359 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:47:38', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:38,359 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:38] "GET / HTTP/1.1" 200 -
+2025-02-19 13:47:39,629 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-19 13:47:39', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:39,631 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:39] "GET /query_usage HTTP/1.1" 200 -
+2025-02-19 13:47:46,215 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:47:46', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:46,215 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:46] "GET / HTTP/1.1" 200 -
+2025-02-19 13:47:47,771 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-19 13:47:47', 'Args': {}, 'Data': {}}
+2025-02-19 13:47:47,771 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:47] "GET /query_usage HTTP/1.1" 200 -
+2025-02-19 13:47:56,812 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-19 13:47:56', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'query_type': 'today', 'start_time': '', 'end_time': ''}}
+2025-02-19 13:47:56,812 - INFO - 127.0.0.1 - - [19/Feb/2025 13:47:56] "[31m[1mPOST /query_usage HTTP/1.1[0m" 405 -
+2025-02-19 13:48:05,120 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:48:05', 'Args': {}, 'Data': {}}
+2025-02-19 13:48:05,121 - INFO - 127.0.0.1 - - [19/Feb/2025 13:48:05] "GET / HTTP/1.1" 200 -
+2025-02-19 13:49:05,794 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-19 13:49:05,853 - INFO -  * Restarting with stat
+2025-02-19 13:49:06,276 - WARNING -  * Debugger is active!
+2025-02-19 13:49:06,276 - INFO -  * Debugger PIN: 665-450-222
+2025-02-19 13:49:10,151 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-19 13:49:10,209 - INFO -  * Restarting with stat
+2025-02-19 13:49:10,625 - WARNING -  * Debugger is active!
+2025-02-19 13:49:10,625 - INFO -  * Debugger PIN: 665-450-222
+2025-02-19 13:56:27,726 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-19 13:56:27,726 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-19 13:56:27,727 - INFO -  * Restarting with stat
+2025-02-19 13:56:28,177 - WARNING -  * Debugger is active!
+2025-02-19 13:56:28,177 - INFO -  * Debugger PIN: 665-450-222
+2025-02-19 13:57:05,171 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-19 13:57:05,171 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-19 13:57:05,172 - INFO -  * Restarting with stat
+2025-02-19 13:57:05,624 - WARNING -  * Debugger is active!
+2025-02-19 13:57:05,624 - INFO -  * Debugger PIN: 665-450-222
+2025-02-19 13:57:10,621 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:57:10', 'Args': {}, 'Data': {}}
+2025-02-19 13:57:10,624 - INFO - 127.0.0.1 - - [19/Feb/2025 13:57:10] "GET / HTTP/1.1" 200 -
+2025-02-19 13:57:12,529 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/register', 'Time': '2025-02-19 13:57:12', 'Args': {}, 'Data': {}}
+2025-02-19 13:57:12,532 - INFO - 127.0.0.1 - - [19/Feb/2025 13:57:12] "GET /register HTTP/1.1" 200 -
+2025-02-19 13:57:21,736 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-19 13:57:21', 'Args': {}, 'Data': {}}
+2025-02-19 13:57:21,737 - INFO - 127.0.0.1 - - [19/Feb/2025 13:57:21] "GET / HTTP/1.1" 200 -
+2025-02-19 13:57:25,455 - INFO -  * Detected change in '/workspaces/Electricity-Reading-Project/app.py', reloading
+2025-02-19 13:57:25,517 - INFO -  * Restarting with stat
+2025-02-19 13:57:25,943 - WARNING -  * Debugger is active!
+2025-02-19 13:57:25,944 - INFO -  * Debugger PIN: 665-450-222

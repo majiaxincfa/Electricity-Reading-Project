@@ -66,7 +66,7 @@ dwelling_types = [
     "Private Apartments and Condominiums"
 ]
 
-regions = ["Central", "East", "West", "North"]
+regions = ["Central", "East", "West", "North","South"]
 
 METER_CSV_PATH = 'meter_id.csv'
 LOCAL_DB_FILE = "local_db.csv"
@@ -230,7 +230,91 @@ def meter_reading():
 
 @app.route('/query_usage', methods=['GET'])
 def query_usage():
-    return render_template('query_usage.html')  # 渲染新页面
+    """
+    查询指定用户在当日/当周/当月/上月 或自定义区间的用电量。
+    生成简单柱状图可视化。
+    """
+    global local_db, users
+    if request.method == 'GET':
+        return render_template('query_usage.html')
+    else:
+        meter_id = request.form.get('meter_id', '').strip()
+        query_type = request.form.get('query_type', '')
+        custom_start = request.form.get('start_time', '')
+        custom_end = request.form.get('end_time', '')
+
+        if meter_id not in users["meter_id"].values:
+            return render_template('query_usage.html',
+                                   result=f"Meter ID {meter_id} not registered yet!")
+
+        now = datetime.now()
+        usage_result = 0.0
+        usage_details = ""
+        usage_period_labels = []
+        usage_values = []
+
+        if query_type == 'today':
+            start_dt = datetime(now.year, now.month, now.day, 0, 0, 0)
+            end_dt = now
+            usage_result = calculate_usage(meter_id, start_dt, end_dt)
+            usage_details = f"Today({start_dt.strftime('%Y-%m-%d')})Electricity Consumption: {usage_result:.2f} kWh"
+            usage_period_labels.append("Today")
+            usage_values.append(usage_result)
+
+        elif query_type == 'this_week':
+            weekday = now.weekday()  # 周一=0
+            monday = now - timedelta(days=weekday)
+            start_dt = datetime(monday.year, monday.month, monday.day, 0, 0, 0)
+            end_dt = now
+            usage_result = calculate_usage(meter_id, start_dt, end_dt)
+            usage_details = f"This week(from {start_dt.strftime('%Y-%m-%d')} to now)Electricity Consumption: {usage_result:.2f} kWh"
+            usage_period_labels.append("This Week")
+            usage_values.append(usage_result)
+
+        elif query_type == 'this_month':
+            start_dt = datetime(now.year, now.month, 1, 0, 0, 0)
+            end_dt = now
+            usage_result = calculate_usage(meter_id, start_dt, end_dt)
+            usage_details = f"This month (From {start_dt.strftime('%Y-%m-%d')} to now)Electricity Consumption: {usage_result:.2f} kWh"
+            usage_period_labels.append("This Month")
+            usage_values.append(usage_result)
+
+        elif query_type == 'last_month':
+            first_day_last_month = (now.replace(day=1) - timedelta(days=1)).replace(day=1)
+            year_lm = first_day_last_month.year
+            month_lm = first_day_last_month.month
+            start_dt = datetime(year_lm, month_lm, 1, 0, 0, 0)
+            next_month_first = (start_dt.replace(day=28) + timedelta(days=4)).replace(day=1)
+            end_dt = next_month_first - timedelta(seconds=1)
+            usage_result = calculate_usage(meter_id, start_dt, end_dt)
+            usage_details = (f"Last Month({start_dt.strftime('%Y-%m-%d')} - "
+                             f"{end_dt.strftime('%Y-%m-%d')})Electricity Consumption: {usage_result:.2f} kWh")
+            usage_period_labels.append("Last Month")
+            usage_values.append(usage_result)
+
+        elif query_type == 'custom' and custom_start and custom_end:
+            try:
+                start_dt = datetime.strptime(custom_start, '%Y-%m-%dT%H:%M')
+                end_dt = datetime.strptime(custom_end, '%Y-%m-%dT%H:%M')
+                if end_dt < start_dt:
+                    return render_template('query_usage.html', result="End time cannot be earlier than the start time!")
+                usage_result = calculate_usage(meter_id, start_dt, end_dt)
+                usage_details = (f"custom field({start_dt.strftime('%Y-%m-%d %H:%M')} - "
+                                 f"{end_dt.strftime('%Y-%m-%d %H:%M')})Electricity Consumption: {usage_result:.2f} kWh")
+                usage_period_labels.append("Custom Range")
+                usage_values.append(usage_result)
+            except ValueError:
+                return render_template('query_usage.html', result="Time format is incorrect, please try again!")
+        else:
+            usage_details = "Select or enter a correct search mode or period."
+
+        chart_data = None
+        if usage_values:
+            chart_data = generate_usage_plot(usage_period_labels, usage_values)
+
+        return render_template('query_usage.html',
+                               result=usage_details,
+                               chart_data=chart_data)
 
 
 # -------------user_management start----------------
