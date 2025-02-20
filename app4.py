@@ -130,7 +130,6 @@ def store_data_in_df(data):
         # Create new DataFrame if file doesn't exist
         data_new =data_store
 
-    data_new.to_csv('local_db.csv', index=False)
     
     # 更新 users 里的 reading 值
     for index, row in data_store.iterrows():
@@ -141,7 +140,7 @@ def store_data_in_df(data):
         users.loc[users["meter_id"] == meter_id, "reading"] = new_reading
         print(f"Updated {meter_id} reading in users: {new_reading}")
 
-    data_store = pd.DataFrame(columns=data_columns)
+    
     
     # **同步保存到 CSV**
     save_users_to_csv()
@@ -235,6 +234,8 @@ def query_usage():
     2) 如果 time_range in ['last_week', 'last_month', 'custom']，从 daily_usage.csv 里读取日末次读数，
        相邻天作差得到每日用量。
     """
+    global data_store
+
     if request.method == 'GET':
         return render_template('query_usage.html', plot_url=None, total_usage=None)
 
