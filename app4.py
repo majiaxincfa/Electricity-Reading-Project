@@ -59,7 +59,7 @@ def log_request_info():
     logging.info(f"Request: {log_data}")
 
 
-# ============ 工具函数：归档与清空 =============
+# ============ 工具函数：归档与清理 =============
 def load_data_store():
     """从 local_db.csv 加载当前所有半小时读数"""
     try:
@@ -76,15 +76,18 @@ def calculate_daily_usage(data_store):
         print("No data available for daily usage calculation.")
         return
 
-    data_store["time"] = pd.to_datetime(data_store["time"])
+    data_store["time"] = pd.to_datetime(data_store["time"], errors='coerce')
+    data_store.dropna(subset=["time"], inplace=True)
     
     # 提取 date
     data_store['date'] = data_store['time'].dt.date
     # 按 meter_id, date 排序后取最后一条
-    latest_readings = (data_store.sort_values('time')
-                       .groupby(['meter_id', 'date'])
-                       .last()
-                       .reset_index())
+    latest_readings = (
+        data_store.sort_values('time')
+                  .groupby(['meter_id', 'date'])
+                  .last()
+                  .reset_index()
+    )
 
     # 把 time 转为字符串
     latest_readings['time'] = latest_readings['time'].dt.strftime('%Y-%m-%d %H:%M:%S')
@@ -103,9 +106,33 @@ def calculate_daily_usage(data_store):
     print(f"Daily usage data updated with {len(latest_readings)} records.")
 
 
+def clean_local_db_7days():
+    """
+    只清理 (删除) local_db.csv 中 7 天前的数据，而不是每天都清空。
+    保留最近7天的半小时记录。
+    """
+    df = load_data_store()
+    if df.empty:
+        print("local_db.csv is empty, no cleaning needed.")
+        return
+
+    df['time'] = pd.to_datetime(df['time'], errors='coerce')
+    df.dropna(subset=['time'], inplace=True)
+
+    cutoff = datetime.now() - timedelta(days=7)
+    recent_df = df[df['time'] >= cutoff]
+
+    if len(recent_df) < len(df):
+        removed_count = len(df) - len(recent_df)
+        recent_df.to_csv(LOCAL_DB_FILE, index=False)
+        print(f"Removed {removed_count} old records older than 7 days from local_db.csv.")
+    else:
+        print("No records older than 7 days. local_db.csv remains unchanged.")
+
 def archive_data():
     """
-    将 local_db.csv 的数据进行日度归档，然后清空 local_db.csv。
+    每天执行一次归档：将 local_db.csv 的数据进行日度归档(写入 daily_usage.csv)。
+    然后只清理 7 天前的记录，以保留最近 7 天的半小时级数据。
     """
     data_store = load_data_store()
     if data_store.empty:
@@ -116,9 +143,8 @@ def archive_data():
         # 1) 根据 data_store 计算每日最新读数并写入 daily_usage.csv
         calculate_daily_usage(data_store)
 
-        # 2) 清空 local_db.csv，让它重新接收当天的半小时数据
-        pd.DataFrame(columns=data_columns).to_csv(LOCAL_DB_FILE, index=False)
-        print("local_db.csv has been cleared after archiving.")
+        # 2) 只保留 local_db.csv 中最近7天的数据，而不完全清空
+        clean_local_db_7days()
     except Exception as e:
         print(f"Error archiving data: {e}")
 
@@ -138,7 +164,6 @@ def scheduled_task():
             time.sleep(60)
         time.sleep(600)  # 每10分钟检查一次
 
-
 # 后台线程启动
 maintenance_thread = threading.Thread(target=scheduled_task, daemon=True)
 maintenance_thread.start()
@@ -150,7 +175,6 @@ executor = ThreadPoolExecutor(max_workers=10)
 def save_users_to_csv():
     """将 `users` 数据保存到 CSV 文件，以防止数据丢失。"""
     users.to_csv(USERS_CSV_FILE, index=False, encoding='utf-8')
-
 
 def store_data_in_df(new_data):
     """
@@ -194,7 +218,7 @@ dwelling_types = [
     "Landed Properties", 
     "Private Apartments and Condominiums"
 ]
-regions = ["Central", "East", "West", "North","South"]
+regions = ["Central", "East", "West", "North", "South"]
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -283,16 +307,20 @@ def meter_reading():
 
         # 构造新的 DataFrame
         formatted_time = time_obj.strftime('%Y-%m-%d %H:%M:%S')
-        new_data = pd.DataFrame([{"meter_id": meter_id,
-                                  "time": formatted_time,
-                                  "reading": reading}])
+        new_data = pd.DataFrame([{
+            "meter_id": meter_id,
+            "time": formatted_time,
+            "reading": reading
+        }])
 
         # 线程池异步写入
         executor.submit(store_data_in_df, new_data)
 
         # 返回成功信息
-        return jsonify({"status": "success",
-                        "message": f"New reading saved: {meter_id}, {formatted_time}, {reading}"}), 201
+        return jsonify({
+            "status": "success",
+            "message": f"New reading saved: {meter_id}, {formatted_time}, {reading}"
+        }), 201
 
 
 # ============ 路由：查询用量 /query_usage ============
