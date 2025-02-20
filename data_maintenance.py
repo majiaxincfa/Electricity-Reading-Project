@@ -23,36 +23,25 @@ def load_data_store():
 
 # get daily electrivity usage
 def calculate_daily_usage(data_store):
+    """Calculate daily usage from data_store"""
     if data_store.empty:
         print("No data available for daily usage calculation.")
         return
 
     data_store["time"] = pd.to_datetime(data_store["time"])
-    today_str = datetime.now().strftime("%Y-%m-%d")
-
-    # get the last data of today
-    today_data = data_store[data_store["time"].dt.strftime("%Y-%m-%d") == today_str]
-    if today_data.empty:
-        print("No records found for today.")
-        return
     
-    latest_today = today_data.sort_values("time").groupby("meter_id").last().reset_index()
-    latest_today["time"] = latest_today["time"].dt.strftime("%Y-%m-%d %H:%M:%S")
-    latest_today.rename(columns={"time": "date"}, inplace=True)
-
-    try:
-        daily_db = pd.read_csv(DAILY_USAGE_FILE, dtype={"date": str})
-    except FileNotFoundError:
-        daily_db = pd.DataFrame(columns=["meter_id", "date", "reading"])
+    data_store['date'] = data_store['time'].dt.date
+    latest_readings = (data_store.sort_values('time')
+                      .groupby(['meter_id', 'date'])
+                      .last()
+                      .reset_index())
     
-    # delete useless recording
-    daily_db = daily_db[daily_db["date"] != today_str]
-    
-     # add new recording
-    daily_db = pd.concat([daily_db, latest_today], ignore_index=True)
-    daily_db.to_csv(DAILY_USAGE_FILE, index=False)
+    latest_readings['time'] = latest_readings['time'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    latest_readings = latest_readings[['meter_id', 'time', 'reading']]
 
-    print(f" Daily latest reading saved for {today_str}")
+    latest_readings.to_csv(DAILY_USAGE_FILE, index=False)
+    
+    print(f"Daily usage data updated with {len(latest_readings)} records")
 
 
 # archive `data_store` 

@@ -141,7 +141,8 @@ def store_data_in_df(data):
         users.loc[users["meter_id"] == meter_id, "reading"] = new_reading
         print(f"Updated {meter_id} reading in users: {new_reading}")
 
-
+    data_store = pd.DataFrame(columns=data_columns)
+    
     # **同步保存到 CSV**
     save_users_to_csv()
 
