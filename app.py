@@ -251,9 +251,9 @@ def query_usage():
 
     now = datetime.now()
     
-    if time_range == 'yesterday':
+    if time_range == 'today':
         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        end_date = now
+        end_date = now.replace(hour=23, minute=59, second=59)  # 覆盖整个今天
     elif time_range == 'last_week':
         end_date = now
         start_date = now - timedelta(days=7)
