@@ -255,11 +255,11 @@ def query_usage():
         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
         end_date = now.replace(hour=23, minute=59, second=59)  # 覆盖整个今天
     elif time_range == 'last_week':
-        end_date = now
-        start_date = now - timedelta(days=7)
+        end_date = now.replace(hour=23, minute=59, second=59) 
+        start_date = end_date - timedelta(days=7)
     elif time_range == 'last_month':
-        end_date = now
-        start_date = now - timedelta(days=30)
+        end_date = now.replace(hour=23, minute=59, second=59) 
+        start_date = end_date - timedelta(days=30)
     else:
         try:
             if start_date_str and end_date_str:
