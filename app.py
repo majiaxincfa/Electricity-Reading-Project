@@ -300,15 +300,6 @@ def query_usage():
         x_data = df_range['time_str'].tolist()
         y_data = df_range['usage'].tolist()
 
-
-
-
-
-    #%H:%M删除
-    #df_range['time_str'] = df_range['time'].dt.strftime('%Y-%m-%d %H:%M')
-    #x_data = df_range['time_str'].tolist()
-    #y_data = df_range['usage'].tolist()
-
     total_usage = sum(y_data)
 
     fig, ax = plt.subplots(figsize=(10, 4))
@@ -340,94 +331,6 @@ def query_usage():
     plt.close(fig)
 
     return render_template('query_usage.html', plot_url=plot_url, total_usage=total_usage)
-
-# @app.route('/query_usage', methods=['GET', 'POST'])
-# def query_usage():
-#     if request.method == 'GET':
-#         return render_template('query_usage.html', plot_url=None, total_usage=None)
-    
-#     meter_id = request.form.get('meter_id', '').strip()
-#     time_range = request.form.get('time_range', 'today')
-#     start_date_str = request.form.get('start_date', '')
-#     end_date_str = request.form.get('end_date', '')
-
-#     if not meter_id:
-#         return render_template('query_usage.html', error="Meter ID is required!", plot_url=None, total_usage=None)
-    
-#     df = pd.read_csv(LOCAL_DB_FILE)
-#     df['time'] = pd.to_datetime(df['time'], errors='coerce')
-#     df = df.dropna(subset=['time'])
-#     df = df[df['meter_id'] == meter_id]
-
-#     if df.empty:
-#         return render_template('query_usage.html', error=f"No data found for meter_id: {meter_id}", plot_url=None, total_usage=None)
-
-#     now = datetime.now()
-    
-#     if time_range == 'today':
-#         start_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
-#         end_date = now
-#     elif time_range == 'last_week':
-#         end_date = now
-#         start_date = now - timedelta(days=7)
-#     elif time_range == 'last_month':
-#         end_date = now
-#         start_date = now - timedelta(days=30)
-#     else:
-#         try:
-#             if start_date_str and end_date_str:
-#                 start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-#                 end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
-#                 end_date = end_date.replace(hour=23, minute=59, second=59)
-#             else:
-#                 return render_template('query_usage.html', error="Please select both start and end date for custom range.", plot_url=None, total_usage=None)
-#         except ValueError:
-#             return render_template('query_usage.html', error="Invalid date format. Please use YYYY-MM-DD.", plot_url=None, total_usage=None)
-
-#     mask = (df['time'] >= start_date) & (df['time'] <= end_date)
-#     df_range = df.loc[mask].copy()
-
-#     if df_range.empty:
-#         return render_template('query_usage.html', error="No meter readings found in the selected date range.", plot_url=None, total_usage=None)
-
-#     df_range.sort_values(by='time', inplace=True)
-#     df_range['reading'] = pd.to_numeric(df_range['reading'], errors='coerce').fillna(0)
-#     df_range['usage'] = df_range['reading'].diff().fillna(0)
-
-#     df_range['time_str'] = df_range['time'].dt.strftime('%m-%d %H:%M')
-#     x_data = df_range['time_str'].tolist()
-#     y_data = df_range['usage'].tolist()
-
-#     total_usage = sum(y_data)
-
-#     fig, ax = plt.subplots(figsize=(10, 4))
-#     bars = ax.bar(x_data, y_data, color='royalblue')
-
-#     for bar in bars:
-#         height = bar.get_height()
-#         ax.annotate(f'{height:.2f}', 
-#                     xy=(bar.get_x() + bar.get_width() / 2, height), 
-#                     xytext=(0, 5), 
-#                     textcoords='offset points',
-#                     ha='center', 
-#                     fontsize=10, 
-#                     color='black')
-
-#     ax.set_title(f"Electricity Usage for Meter {meter_id}")
-#     ax.set_xlabel("Time")
-#     ax.set_ylabel("Usage (kWh)")
-#     plt.xticks(rotation=45, ha='right')
-#     plt.tight_layout()
-
-#     buf = io.BytesIO()
-#     fig.savefig(buf, format="png")
-#     buf.seek(0)
-#     encoded = base64.b64encode(buf.getvalue()).decode('utf-8')
-#     plot_url = "data:image/png;base64," + encoded
-#     plt.close(fig)
-
-#     return render_template('query_usage.html', plot_url=plot_url, total_usage=total_usage)
-
 
 # -------------user_management start----------------
 
