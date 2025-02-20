@@ -2421,3 +2421,186 @@
 2025-02-20 03:55:11,510 - INFO -  * Debugger PIN: 572-924-966
 2025-02-20 03:55:15,448 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 03:55:15', 'Args': {}, 'Data': {}}
 2025-02-20 03:55:15,451 - INFO - 127.0.0.1 - - [20/Feb/2025 03:55:15] "GET / HTTP/1.1" 200 -
+2025-02-20 04:18:03,782 - INFO - generated new fontManager
+2025-02-20 04:18:05,830 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 04:18:05,831 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 04:18:05,832 - INFO -  * Restarting with stat
+2025-02-20 04:18:07,326 - WARNING -  * Debugger is active!
+2025-02-20 04:18:07,329 - INFO -  * Debugger PIN: 142-065-257
+2025-02-20 04:18:13,200 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 04:18:13', 'Args': {}, 'Data': {}}
+2025-02-20 04:18:13,343 - INFO - 127.0.0.1 - - [20/Feb/2025 04:18:13] "GET / HTTP/1.1" 200 -
+2025-02-20 04:18:13,698 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/favicon.ico', 'Time': '2025-02-20 04:18:13', 'Args': {}, 'Data': {}}
+2025-02-20 04:18:13,699 - INFO - 127.0.0.1 - - [20/Feb/2025 04:18:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-20 04:18:17,145 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 04:18:17', 'Args': {}, 'Data': {}}
+2025-02-20 04:18:17,152 - INFO - 127.0.0.1 - - [20/Feb/2025 04:18:17] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 04:30:22,130 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 04:30:22,130 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 04:30:22,131 - INFO -  * Restarting with stat
+2025-02-20 04:30:22,803 - WARNING -  * Debugger is active!
+2025-02-20 04:30:22,808 - INFO -  * Debugger PIN: 142-065-257
+2025-02-20 04:30:25,231 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 04:30:25', 'Args': {}, 'Data': {}}
+2025-02-20 04:30:25,234 - INFO - 127.0.0.1 - - [20/Feb/2025 04:30:25] "GET / HTTP/1.1" 200 -
+2025-02-20 04:30:26,654 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 04:30:26', 'Args': {}, 'Data': {}}
+2025-02-20 04:30:26,658 - INFO - 127.0.0.1 - - [20/Feb/2025 04:30:26] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 04:30:36,384 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 04:30:36', 'Args': {}, 'Data': {}}
+2025-02-20 04:30:36,384 - INFO - 127.0.0.1 - - [20/Feb/2025 04:30:36] "GET / HTTP/1.1" 200 -
+2025-02-20 04:32:50,104 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 04:32:50,105 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 04:32:50,106 - INFO -  * Restarting with stat
+2025-02-20 04:32:51,489 - WARNING -  * Debugger is active!
+2025-02-20 04:32:51,489 - INFO -  * Debugger PIN: 142-065-257
+2025-02-20 04:32:54,551 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 04:32:54', 'Args': {}, 'Data': {}}
+2025-02-20 04:32:54,557 - INFO - 127.0.0.1 - - [20/Feb/2025 04:32:54] "GET / HTTP/1.1" 200 -
+2025-02-20 04:32:55,042 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/favicon.ico', 'Time': '2025-02-20 04:32:55', 'Args': {}, 'Data': {}}
+2025-02-20 04:32:55,043 - INFO - 127.0.0.1 - - [20/Feb/2025 04:32:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-20 04:32:56,311 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 04:32:56', 'Args': {}, 'Data': {}}
+2025-02-20 04:32:56,315 - INFO - 127.0.0.1 - - [20/Feb/2025 04:32:56] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 04:37:02,504 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:37:02', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:37:02,567 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:37:02,569 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:37:02,755 - INFO - 127.0.0.1 - - [20/Feb/2025 04:37:02] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 04:38:33,060 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:38:33', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:38:33,082 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:33,083 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:33,214 - INFO - 127.0.0.1 - - [20/Feb/2025 04:38:33] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 04:38:41,760 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:38:41', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:38:41,772 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:41,773 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:41,860 - INFO - 127.0.0.1 - - [20/Feb/2025 04:38:41] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 04:38:47,035 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:38:47', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:38:47,064 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:47,065 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:47,217 - INFO - 127.0.0.1 - - [20/Feb/2025 04:38:47] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 04:38:58,822 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:38:58', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:38:58,835 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:58,836 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:38:58,937 - INFO - 127.0.0.1 - - [20/Feb/2025 04:38:58] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 04:39:38,064 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 04:39:38', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 04:39:38,078 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:39:38,079 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 04:39:38,171 - INFO - 127.0.0.1 - - [20/Feb/2025 04:39:38] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:07:50,933 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 06:07:50,935 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 06:07:50,936 - INFO -  * Restarting with stat
+2025-02-20 06:07:51,689 - WARNING -  * Debugger is active!
+2025-02-20 06:07:51,702 - INFO -  * Debugger PIN: 523-121-672
+2025-02-20 06:07:56,695 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:07:56', 'Args': {}, 'Data': {}}
+2025-02-20 06:07:56,700 - INFO - 127.0.0.1 - - [20/Feb/2025 06:07:56] "GET / HTTP/1.1" 200 -
+2025-02-20 06:07:59,040 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 06:07:59', 'Args': {}, 'Data': {}}
+2025-02-20 06:07:59,051 - INFO - 127.0.0.1 - - [20/Feb/2025 06:07:59] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 06:08:01,967 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:08:01', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:08:02,001 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:02,002 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:02,224 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:02] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:08:11,432 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:08:11', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:08:11,448 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:11,449 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:11,568 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:11] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:08:28,214 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:08:28', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:08:28,227 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:28,228 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:28,348 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:28] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:08:30,543 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:08:30', 'Args': {}, 'Data': {}}
+2025-02-20 06:08:30,543 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:30] "GET / HTTP/1.1" 200 -
+2025-02-20 06:08:46,525 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 06:08:46,525 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 06:08:46,526 - INFO -  * Restarting with stat
+2025-02-20 06:08:47,217 - WARNING -  * Debugger is active!
+2025-02-20 06:08:47,217 - INFO -  * Debugger PIN: 523-121-672
+2025-02-20 06:08:48,878 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:08:48', 'Args': {}, 'Data': {}}
+2025-02-20 06:08:48,882 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:48] "GET / HTTP/1.1" 200 -
+2025-02-20 06:08:50,720 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 06:08:50', 'Args': {}, 'Data': {}}
+2025-02-20 06:08:50,723 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:50] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 06:08:55,052 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:08:55', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:08:55,070 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:55,071 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:08:55,213 - INFO - 127.0.0.1 - - [20/Feb/2025 06:08:55] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:09:00,702 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:09:00', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:09:00,714 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:00,715 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:00,826 - INFO - 127.0.0.1 - - [20/Feb/2025 06:09:00] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:09:19,531 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:09:19', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:09:19,546 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:19,546 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:19,653 - INFO - 127.0.0.1 - - [20/Feb/2025 06:09:19] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:09:56,791 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:09:56', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'custom', 'start_date': '2025-02-18', 'end_date': '2025-02-20'}}
+2025-02-20 06:09:56,806 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:56,807 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:09:56,955 - INFO - 127.0.0.1 - - [20/Feb/2025 06:09:56] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:10:16,010 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:10:16', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'custom', 'start_date': '2025-02-17', 'end_date': '2025-02-20'}}
+2025-02-20 06:10:16,026 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:10:16,027 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:10:16,150 - INFO - 127.0.0.1 - - [20/Feb/2025 06:10:16] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:10:24,272 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:10:24', 'Args': {}, 'Data': {}}
+2025-02-20 06:10:24,273 - INFO - 127.0.0.1 - - [20/Feb/2025 06:10:24] "GET / HTTP/1.1" 200 -
+2025-02-20 06:15:19,552 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-02-20 06:15:19,553 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-20 06:15:19,553 - INFO -  * Restarting with stat
+2025-02-20 06:15:20,245 - WARNING -  * Debugger is active!
+2025-02-20 06:15:20,245 - INFO -  * Debugger PIN: 523-121-672
+2025-02-20 06:15:23,199 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:15:23', 'Args': {}, 'Data': {}}
+2025-02-20 06:15:23,206 - INFO - 127.0.0.1 - - [20/Feb/2025 06:15:23] "GET / HTTP/1.1" 200 -
+2025-02-20 06:15:26,659 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 06:15:26', 'Args': {}, 'Data': {}}
+2025-02-20 06:15:26,667 - INFO - 127.0.0.1 - - [20/Feb/2025 06:15:26] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 06:15:29,374 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:15:29', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:15:29,392 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:29,393 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:29,503 - INFO - 127.0.0.1 - - [20/Feb/2025 06:15:29] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:15:34,306 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:15:34', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:15:34,320 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:34,321 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:34,485 - INFO - 127.0.0.1 - - [20/Feb/2025 06:15:34] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:15:42,629 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:15:42', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:15:42,641 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:42,642 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:15:42,744 - INFO - 127.0.0.1 - - [20/Feb/2025 06:15:42] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:16:00,903 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:16:00', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'custom', 'start_date': '2025-02-18', 'end_date': '2025-02-20'}}
+2025-02-20 06:16:00,915 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:00,915 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:00,982 - INFO - 127.0.0.1 - - [20/Feb/2025 06:16:00] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:16:18,816 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:16:18', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'custom', 'start_date': '2025-02-16', 'end_date': '2025-02-20'}}
+2025-02-20 06:16:18,830 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:18,831 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:18,949 - INFO - 127.0.0.1 - - [20/Feb/2025 06:16:18] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:16:31,245 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:16:31', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:16:31,263 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:31,264 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:16:31,415 - INFO - 127.0.0.1 - - [20/Feb/2025 06:16:31] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:16:37,140 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/', 'Time': '2025-02-20 06:16:37', 'Args': {}, 'Data': {}}
+2025-02-20 06:16:37,141 - INFO - 127.0.0.1 - - [20/Feb/2025 06:16:37] "GET / HTTP/1.1" 200 -
+2025-02-20 06:18:53,662 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'GET', 'Path': '/query_usage', 'Time': '2025-02-20 06:18:53', 'Args': {}, 'Data': {}}
+2025-02-20 06:18:53,662 - INFO - 127.0.0.1 - - [20/Feb/2025 06:18:53] "GET /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:00,001 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:00', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:00,015 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:00,016 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:00,126 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:00] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:11,181 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:11', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:11,195 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:11,196 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:11,379 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:11] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:14,844 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:14', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:14,856 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:14,857 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:14,961 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:14] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:27,261 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:27', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:27,275 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:27,275 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:27,388 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:27] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:41,151 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:41', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_month', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:41,164 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:41,164 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:41,267 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:41] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:19:55,477 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:19:55', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'today', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:19:55,489 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:55,490 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:19:55,593 - INFO - 127.0.0.1 - - [20/Feb/2025 06:19:55] "POST /query_usage HTTP/1.1" 200 -
+2025-02-20 06:20:02,276 - INFO - Request: {'IP': '127.0.0.1', 'Method': 'POST', 'Path': '/query_usage', 'Time': '2025-02-20 06:20:02', 'Args': {}, 'Data': {'meter_id': '987-654-320', 'time_range': 'last_week', 'start_date': '', 'end_date': ''}}
+2025-02-20 06:20:02,290 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:20:02,291 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-02-20 06:20:02,424 - INFO - 127.0.0.1 - - [20/Feb/2025 06:20:02] "POST /query_usage HTTP/1.1" 200 -
